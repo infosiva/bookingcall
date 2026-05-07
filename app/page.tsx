@@ -5,15 +5,15 @@ import { theme, btn } from '@/lib/theme'
 import HeroChatPreview from '@/components/HeroChatPreview'
 
 const SOCIAL_PROOF = [
-  { name: 'Sarah M.', role: 'Used last week', text: `Found the perfect ${config.providerLabel.toLowerCase()} within 20 minutes. The AI understood exactly what I needed.`, rating: 5 },
-  { name: 'James T.', role: 'Regular user', text: `${config.name} has transformed how I find trusted professionals. No more scrolling through endless profiles.`, rating: 5 },
-  { name: 'Priya K.', role: 'Verified family', text: 'The background checks and reviews gave us real peace of mind. Would recommend to anyone.', rating: 5 },
+  { name: 'Priya K.', role: 'Used last week', text: 'Booked a facial in 3 minutes — the AI asked all the right questions and the salon called back to confirm within 2 minutes!', rating: 5 },
+  { name: 'James T.', role: 'Regular user',   text: 'No more sitting on hold. I just chat, they call. My go-to for booking my barber every month.', rating: 5 },
+  { name: 'Sarah M.', role: 'New customer',   text: 'Dental appointment sorted without leaving the sofa. Confirmation text came through almost immediately.', rating: 5 },
 ]
 
 const HOW_IT_WORKS = [
-  { icon: '💬', step: '1', title: 'Chat with our AI', desc: `Tell our AI assistant what you need. No forms — just a natural conversation.` },
-  { icon: '✨', step: '2', title: 'Get matched', desc: `AI shortlists the best ${config.providerPlural.toLowerCase()} based on your specific requirements.` },
-  { icon: '📅', step: '3', title: 'Book instantly', desc: `Review profiles, check availability, and confirm — all in one place.` },
+  { icon: '💬', step: '1', title: 'Chat with our AI',    desc: 'Tell the AI what service, date, and time you want. No forms — plain conversation.' },
+  { icon: '📞', step: '2', title: 'We call the salon',   desc: 'Our system calls the salon directly to check availability and lock in your slot.' },
+  { icon: '✅', step: '3', title: 'You get a text',      desc: 'Confirmation SMS sent to your phone. No hold music, no back-and-forth.' },
 ]
 
 export default function HomePage() {

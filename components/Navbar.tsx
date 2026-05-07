@@ -20,15 +20,15 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8 text-sm text-white/60">
-          <Link href="/search"    className="hover:text-white transition-colors">Find a {config.providerLabel}</Link>
-          <Link href="/providers" className="hover:text-white transition-colors">For {config.providerPlural}</Link>
+          <Link href="/search"       className="hover:text-white transition-colors">Find a {config.providerLabel}</Link>
           <Link href="/how-it-works" className="hover:text-white transition-colors">How it works</Link>
+          <Link href="/register"     className="hover:text-white transition-colors font-medium text-rose-400/80">For Salons — Free Trial</Link>
         </div>
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <Link href="/login"    className={btn.ghost}>Log in</Link>
-          <Link href="/chat"     className={btn.primary}>Get matched</Link>
+          <Link href="/register" className={btn.ghost}>List my salon</Link>
+          <Link href="/chat"     className={btn.primary}>Book now</Link>
         </div>
 
         {/* Mobile toggle */}
@@ -41,9 +41,9 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden border-t border-white/[0.06] px-6 py-4 flex flex-col gap-4 text-sm">
           <Link href="/search"       className="text-white/70 hover:text-white" onClick={() => setOpen(false)}>Find a {config.providerLabel}</Link>
-          <Link href="/providers"    className="text-white/70 hover:text-white" onClick={() => setOpen(false)}>For {config.providerPlural}</Link>
           <Link href="/how-it-works" className="text-white/70 hover:text-white" onClick={() => setOpen(false)}>How it works</Link>
-          <Link href="/chat"         className={btn.primary}                    onClick={() => setOpen(false)}>Get matched free</Link>
+          <Link href="/register"     className="text-rose-400/80 font-medium"   onClick={() => setOpen(false)}>For Salons — Free Trial</Link>
+          <Link href="/chat"         className={btn.primary}                    onClick={() => setOpen(false)}>Book now</Link>
         </div>
       )}
     </nav>

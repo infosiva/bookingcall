@@ -1,42 +1,36 @@
 /**
- * vertical.config.ts — THE ONLY FILE THAT CHANGES PER DEPLOYMENT
+ * vertical.config.ts — BookingCall: Salon & Clinic AI booking agent
  *
- * Copy this file, fill in your vertical, deploy to Vercel.
- * All other code reads from this config at runtime.
+ * AI chat qualifies the customer → confirms slot → triggers outbound call
+ * to the salon/clinic to lock in the appointment.
  */
 
 export type PricingModel = 'hourly' | 'fixed' | 'session' | 'quote'
 export type BookingFlow  = 'instant' | 'quote_first' | 'consult_first'
 
 export interface VerticalConfig {
-  // ── Identity ────────────────────────────────────────────
-  id:          string   // slug used in URLs, DB tables, etc.
-  name:        string   // "CleanFast" / "ElderCare+" / "TuneUp"
+  id:          string
+  name:        string
   tagline:     string
-  domain:      string   // final domain, used in metadata
-  themeColor:  string   // tailwind color name: "blue" | "emerald" | "violet" etc.
+  domain:      string
+  themeColor:  string
 
-  // ── Provider terminology ─────────────────────────────────
-  providerLabel:  string  // "Cleaner" | "Carer" | "Mechanic" | "Tutor"
-  providerPlural: string  // "Cleaners" | "Carers" | "Mechanics" | "Tutors"
-  consumerLabel:  string  // "Client" | "Family" | "Driver" | "Student"
+  providerLabel:  string
+  providerPlural: string
+  consumerLabel:  string
 
-  // ── Service categories ───────────────────────────────────
   categories: Category[]
 
-  // ── Booking ──────────────────────────────────────────────
-  pricingModel:   PricingModel
-  bookingFlow:    BookingFlow
-  minPrice:       number   // £ — floor for AI price suggestion
-  maxPrice:       number   // £ — ceiling
-  sessionMinutes: number   // default session length
+  pricingModel:       PricingModel
+  bookingFlow:        BookingFlow
+  minPrice:           number
+  maxPrice:           number
+  sessionMinutes:     number
   platformFeePercent: number
 
-  // ── AI context ───────────────────────────────────────────
-  aiSystemPrompt: string   // injected into every AI call
-  aiMatchHints:   string[] // extra signals for provider matching
+  aiSystemPrompt: string
+  aiMatchHints:   string[]
 
-  // ── Features (toggle) ───────────────────────────────────
   features: {
     backgroundCheck:  boolean
     portfolioPhotos:  boolean
@@ -47,11 +41,11 @@ export interface VerticalConfig {
     remoteSession:    boolean
     groupSession:     boolean
     insuranceBadge:   boolean
-    aiDiagnosis:      boolean   // e.g. car fault codes before mechanic
-    careJournal:      boolean   // e.g. daily notes for elder care
+    aiDiagnosis:      boolean
+    careJournal:      boolean
+    callBooking:      boolean   // triggers outbound Twilio call to confirm
   }
 
-  // ── SEO / meta ───────────────────────────────────────────
   metaTitle:       string
   metaDescription: string
   keywords:        string[]
@@ -60,118 +54,87 @@ export interface VerticalConfig {
 export interface Category {
   id:    string
   label: string
-  icon:  string  // emoji or lucide icon name
+  icon:  string
   desc:  string
 }
 
 // ════════════════════════════════════════════════════════════
-// ACTIVE VERTICAL — swap this to change the entire app
+// ACTIVE VERTICAL — BookingCall: Salon & Clinic
 // ════════════════════════════════════════════════════════════
 
 const config: VerticalConfig = {
-  // ── Elder Care ───────────────────────────────────────────
-  id:         'eldercare',
-  name:       'ElderCare+',
-  tagline:    'Trusted carers for your loved ones — found in minutes, not days',
-  domain:     'eldercare.plus',
-  themeColor: 'violet',
+  id:         'bookingcall',
+  name:       'BookingCall',
+  tagline:    'Book any salon or clinic — AI chats, we call to confirm',
+  domain:     'bookingcall.app',
+  themeColor: 'rose',
 
-  providerLabel:  'Carer',
-  providerPlural: 'Carers',
-  consumerLabel:  'Family',
+  providerLabel:  'Salon',
+  providerPlural: 'Salons',
+  consumerLabel:  'Customer',
 
   categories: [
-    { id: 'companionship',  label: 'Companionship',       icon: '🤝', desc: 'Social visits, conversation, light outings' },
-    { id: 'personal-care',  label: 'Personal Care',       icon: '🛁', desc: 'Bathing, dressing, hygiene assistance' },
-    { id: 'dementia',       label: 'Dementia Support',    icon: '🧠', desc: 'Specialist memory care at home' },
-    { id: 'medication',     label: 'Medication Prompts',  icon: '💊', desc: 'Reminders, administration support' },
-    { id: 'mobility',       label: 'Mobility Assistance', icon: '🦽', desc: 'Transfers, exercise, fall prevention' },
-    { id: 'night-care',     label: 'Overnight / Live-in', icon: '🌙', desc: '24hr or night-shift live-in care' },
-    { id: 'post-hospital',  label: 'Post-Hospital Care',  icon: '🏥', desc: 'Recovery support after discharge' },
-    { id: 'end-of-life',    label: 'Palliative Support',  icon: '🕊️', desc: 'Compassionate end-of-life companionship' },
+    { id: 'haircut',  label: 'Haircut & Styling', icon: '✂️',  desc: 'Cuts, blowouts, colour, treatments' },
+    { id: 'nails',    label: 'Nails',             icon: '💅',  desc: 'Manicure, pedicure, gel, acrylic' },
+    { id: 'facial',   label: 'Facial & Skin',     icon: '🧖',  desc: 'Facials, peels, microdermabrasion' },
+    { id: 'massage',  label: 'Massage',           icon: '💆',  desc: 'Swedish, deep tissue, hot stone' },
+    { id: 'dental',   label: 'Dental',            icon: '🦷',  desc: 'Check-up, cleaning, whitening' },
+    { id: 'physio',   label: 'Physiotherapy',     icon: '🏥',  desc: 'Injury rehab, sports therapy' },
+    { id: 'laser',    label: 'Laser & IPL',       icon: '✨',  desc: 'Hair removal, skin rejuvenation' },
+    { id: 'tattoo',   label: 'Tattoo & Piercing', icon: '🖊️',  desc: 'Custom ink, fine-line, piercings' },
   ],
 
-  pricingModel:        'hourly',
-  bookingFlow:         'consult_first',
-  minPrice:            15,
-  maxPrice:            40,
-  sessionMinutes:      60,
-  platformFeePercent:  12,
+  pricingModel:       'session',
+  bookingFlow:        'instant',
+  minPrice:           20,
+  maxPrice:           300,
+  sessionMinutes:     60,
+  platformFeePercent: 0,
 
-  aiSystemPrompt: `You are a compassionate care coordinator for ElderCare+.
-Help families find the right carer for their elderly relative.
-Ask about: the person's age, main challenges, preferred schedule,
-personality (quiet/social), whether they have dementia or mobility issues,
-and whether family can be present during visits.
-Never give medical advice. Always recommend consulting a GP.
-Be warm, empathetic, and reassuring — families are often stressed.`,
+  aiSystemPrompt: `You are a friendly booking assistant for BookingCall.
+Your job is to help customers book a salon or clinic appointment via AI chat.
+
+COLLECTION FLOW (ask one at a time, naturally):
+1. What service do they want? (haircut, facial, massage, dental, physio, etc.)
+2. Preferred date and time? Offer flexibility if they say "anytime soon".
+3. Their full name?
+4. Their phone number? (we'll text confirmation)
+5. Their location or postcode? (to find nearby salons)
+
+Once you have ALL 5 details, confirm everything back clearly, then say:
+"We'll call the salon now to lock in your slot. Confirmation text within 2 minutes!"
+
+THEN output this exact JSON block on a new line (required to trigger the call):
+BOOKING_READY:{"service":"<service>","date":"<date>","time":"<time>","name":"<name>","phone":"<phone>","location":"<location>"}
+
+Rules:
+- Conversational and brief — no bullet lists of questions at once
+- Never give medical advice
+- On price queries: "The salon will confirm pricing when we call — most services start from £20"
+- If they hesitate on phone number: "We only use it to text your confirmation"`,
 
   aiMatchHints: [
-    'dementia certification', 'moving and handling trained',
-    'first aid', 'palliative care experience', 'live-in experience',
-    'driving licence', 'same-gender preference',
+    'near me', 'same day', 'weekend availability', 'walk-in', 'experienced', 'female therapist',
   ],
 
   features: {
-    backgroundCheck:  true,
+    backgroundCheck:  false,
     portfolioPhotos:  true,
-    videoIntro:       true,
-    instantBook:      false,
+    videoIntro:       false,
+    instantBook:      true,
     recurringBook:    true,
-    homeVisit:        true,
+    homeVisit:        false,
     remoteSession:    false,
     groupSession:     false,
-    insuranceBadge:   true,
+    insuranceBadge:   false,
     aiDiagnosis:      false,
-    careJournal:      true,
+    careJournal:      false,
+    callBooking:      true,
   },
 
-  metaTitle:       'ElderCare+ — Find Trusted Home Carers Near You',
-  metaDescription: 'AI-matched home carers for older adults. Background-checked, insured, reviewed by real families. Book a free consultation today.',
-  keywords:        ['home carer', 'elder care', 'elderly care at home', 'dementia carer', 'live-in carer'],
+  metaTitle:       'BookingCall — AI Books Your Salon Appointment With a Real Call',
+  metaDescription: 'Chat with our AI, we call the salon to confirm your booking. Haircuts, facials, dental, massage — booked in 2 minutes.',
+  keywords:        ['salon booking', 'book haircut online', 'clinic appointment', 'book massage', 'dental appointment'],
 }
 
 export default config
-
-// ════════════════════════════════════════════════════════════
-// OTHER VERTICALS (copy + swap the export above)
-// ════════════════════════════════════════════════════════════
-
-export const PRESETS: Record<string, Partial<VerticalConfig>> = {
-  mechanics: {
-    id: 'mechanics', name: 'MechFix', themeColor: 'orange',
-    tagline: 'Find a trusted local mechanic — AI pre-diagnosis included',
-    providerLabel: 'Mechanic', providerPlural: 'Mechanics', consumerLabel: 'Driver',
-    pricingModel: 'quote', bookingFlow: 'quote_first',
-    features: { backgroundCheck:false, portfolioPhotos:true, videoIntro:false,
-      instantBook:false, recurringBook:false, homeVisit:true, remoteSession:false,
-      groupSession:false, insuranceBadge:true, aiDiagnosis:true, careJournal:false },
-  },
-  music: {
-    id: 'music', name: 'TuneUp', themeColor: 'indigo',
-    tagline: 'Learn any instrument from verified local tutors',
-    providerLabel: 'Tutor', providerPlural: 'Tutors', consumerLabel: 'Student',
-    pricingModel: 'session', bookingFlow: 'instant',
-    features: { backgroundCheck:true, portfolioPhotos:true, videoIntro:true,
-      instantBook:true, recurringBook:true, homeVisit:true, remoteSession:true,
-      groupSession:true, insuranceBadge:false, aiDiagnosis:false, careJournal:false },
-  },
-  wedding: {
-    id: 'wedding', name: 'WedFlow', themeColor: 'rose',
-    tagline: 'Every wedding vendor you need — curated, reviewed, instantly bookable',
-    providerLabel: 'Vendor', providerPlural: 'Vendors', consumerLabel: 'Couple',
-    pricingModel: 'fixed', bookingFlow: 'quote_first',
-    features: { backgroundCheck:false, portfolioPhotos:true, videoIntro:true,
-      instantBook:false, recurringBook:false, homeVisit:false, remoteSession:false,
-      groupSession:false, insuranceBadge:false, aiDiagnosis:false, careJournal:false },
-  },
-  nutrition: {
-    id: 'nutrition', name: 'NutriCoach', themeColor: 'green',
-    tagline: 'Personalised nutrition coaching — AI-matched to your goals',
-    providerLabel: 'Nutritionist', providerPlural: 'Nutritionists', consumerLabel: 'Client',
-    pricingModel: 'session', bookingFlow: 'consult_first',
-    features: { backgroundCheck:false, portfolioPhotos:false, videoIntro:true,
-      instantBook:false, recurringBook:true, homeVisit:false, remoteSession:true,
-      groupSession:true, insuranceBadge:true, aiDiagnosis:false, careJournal:true },
-  },
-}
