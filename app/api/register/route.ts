@@ -49,6 +49,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'name, phone, postcode, email required' }, { status: 400 })
     }
 
+    if (name.length > 100 || postcode.length > 10 || (city && city.length > 100)) {
+      return NextResponse.json({ error: 'Input too long' }, { status: 400 })
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: 'Invalid email' }, { status: 400 })
+    }
+    if (!/^\+?[1-9]\d{6,14}$/.test(phone.replace(/[\s\-()]/g, ''))) {
+      return NextResponse.json({ error: 'Invalid phone number' }, { status: 400 })
+    }
+    if (!Array.isArray(services) || services.length === 0 || services.length > 20) {
+      return NextResponse.json({ error: 'Provide 1–20 services' }, { status: 400 })
+    }
+    if (services.some((s: unknown) => typeof s !== 'string' || s.length > 50)) {
+      return NextResponse.json({ error: 'Invalid service name' }, { status: 400 })
+    }
+
     const salons = loadSalons()
     const existing = salons.find(s => s.email === email)
     if (existing) {

@@ -7,6 +7,15 @@ import { NextRequest } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
+function escapeXml(str: string): string {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl
   const name      = searchParams.get('name')      ?? 'a customer'
@@ -19,9 +28,9 @@ export async function GET(req: NextRequest) {
 <Response>
   <Pause length="1"/>
   <Say voice="Polly.Amy-Neural">
-    Hello, ${salonName}! This is an automated booking call from BookingCall dot app.
-    A customer named ${name} would like to book a ${service} appointment.
-    Their preferred date is ${date}, at ${time}.
+    Hello, ${escapeXml(salonName)}! This is an automated booking call from BookingCall dot app.
+    A customer named ${escapeXml(name)} would like to book a ${escapeXml(service)} appointment.
+    Their preferred date is ${escapeXml(date)}, at ${escapeXml(time)}.
     Please call or text them back to confirm. Their details are in your BookingCall dashboard.
     Thank you and have a great day!
   </Say>
