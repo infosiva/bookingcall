@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #080712;
-  --foreground: #f0eeff;
+  --background: #1a0a10;
+  --foreground: #f5e8ed;
+  --accent:     #d4a0b0;
+  --highlight:  #f5c6d8;
 }
 
 * {
@@ -18,6 +20,11 @@ body {
   color: var(--foreground);
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* ── Salon background ───────────────────────────────────── */
+.salon-bg {
+  background: #1a0a10;
 }
 
 /* mesh-bg is now inline style in layout.tsx — dynamic per vertical */
@@ -109,3 +116,210 @@ body {
 }
 .typing-dot:nth-child(2) { animation-delay: 0.2s; }
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ═══════════════════════════════════════════════════════════
+   SALON & BEAUTY — Premium design tokens
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Salon gradient text ─────────────────────────────────── */
+.salon-gradient-text {
+  background: linear-gradient(135deg, #f5c6d8 0%, #d4a0b0 50%, #c47d95 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Salon glass panels ──────────────────────────────────── */
+.salon-glass {
+  background: rgba(212, 160, 176, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Aurora orbs (rose-gold background atmosphere) ──────── */
+@keyframes aurora-rose {
+  0%   { transform: translate(0, 0)    scale(1);    opacity: 0.12; }
+  33%  { transform: translate(60px, -40px) scale(1.1); opacity: 0.18; }
+  66%  { transform: translate(-30px, 30px) scale(0.95); opacity: 0.10; }
+  100% { transform: translate(0, 0)    scale(1);    opacity: 0.12; }
+}
+
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.aurora-orb-1 {
+  width: 600px; height: 600px;
+  top: -100px; left: -150px;
+  background: radial-gradient(circle, #c47d95 0%, #d4a0b0 40%, transparent 70%);
+  animation: aurora-rose 18s ease-in-out infinite;
+}
+.aurora-orb-2 {
+  width: 500px; height: 500px;
+  top: 40%; right: -100px;
+  background: radial-gradient(circle, #f5c6d8 0%, #d4a0b0 50%, transparent 70%);
+  animation: aurora-rose 24s ease-in-out infinite reverse;
+}
+.aurora-orb-3 {
+  width: 400px; height: 400px;
+  bottom: 10%; left: 30%;
+  background: radial-gradient(circle, #d4a0b0 0%, #c47d95 60%, transparent 70%);
+  animation: aurora-rose 20s ease-in-out infinite 5s;
+}
+
+/* ── Floating beauty icons ───────────────────────────────── */
+@keyframes float-beauty {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25%       { transform: translateY(-12px) rotate(5deg); }
+  75%       { transform: translateY(6px) rotate(-3deg); }
+}
+
+.beauty-float   { animation: float-beauty 6s ease-in-out infinite; }
+.beauty-float-1 { animation-duration: 7s; animation-delay: 0s; }
+.beauty-float-2 { animation-duration: 9s; animation-delay: 1.5s; }
+.beauty-float-3 { animation-duration: 8s; animation-delay: 3s; }
+.beauty-float-4 { animation-duration: 6s; animation-delay: 2s; }
+.beauty-float-5 { animation-duration: 10s; animation-delay: 0.5s; }
+
+/* ── Ticker scroll ───────────────────────────────────────── */
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker-scroll 20s linear infinite;
+  width: max-content;
+}
+
+/* ── Shimmer rose (cards) ────────────────────────────────── */
+@keyframes shimmer-rose {
+  0%   { background-position: -300% center; opacity: 0; }
+  30%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { background-position:  300% center; opacity: 0; }
+}
+.salon-card-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(245, 198, 216, 0.06) 50%,
+    transparent 70%
+  );
+  background-size: 300% 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  animation: shimmer-rose 4s ease-in-out infinite;
+}
+
+/* ── Salon cards ─────────────────────────────────────────── */
+.salon-card {
+  position: relative;
+  background: rgba(212, 160, 176, 0.04);
+  border: 1px solid rgba(212, 160, 176, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 1.5rem;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+.salon-card:hover {
+  border-color: rgba(212, 160, 176, 0.30);
+  background: rgba(212, 160, 176, 0.07);
+  box-shadow: 0 8px 40px rgba(196, 125, 149, 0.15);
+}
+
+/* ── Salon service card ──────────────────────────────────── */
+.salon-service-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  background: rgba(212, 160, 176, 0.04);
+  border: 1px solid rgba(212, 160, 176, 0.10);
+  border-radius: 16px;
+  padding: 1.25rem 1.25rem;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.salon-service-card:hover {
+  border-color: rgba(212, 160, 176, 0.28);
+  background: rgba(212, 160, 176, 0.08);
+  box-shadow: 0 4px 24px rgba(196, 125, 149, 0.12);
+  transform: translateY(-2px);
+}
+.salon-service-icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  width: 2.75rem;
+  text-align: center;
+}
+
+/* ── Step icon ───────────────────────────────────────────── */
+.salon-step-icon {
+  transition: transform 0.3s;
+}
+.salon-step-icon:hover {
+  transform: scale(1.08);
+}
+
+/* ── Feature card ────────────────────────────────────────── */
+.salon-feature-card {
+  background: rgba(212, 160, 176, 0.03);
+  border: 1px solid rgba(212, 160, 176, 0.08);
+  border-radius: 16px;
+  padding: 1.25rem;
+  transition: all 0.2s;
+}
+.salon-feature-card:hover {
+  border-color: rgba(212, 160, 176, 0.20);
+  background: rgba(212, 160, 176, 0.06);
+}
+
+/* ── Review card ─────────────────────────────────────────── */
+.salon-review-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: rgba(212, 160, 176, 0.04);
+  border: 1px solid rgba(212, 160, 176, 0.10);
+  border-radius: 20px;
+  padding: 1.5rem;
+  transition: all 0.25s;
+}
+.salon-review-card:hover {
+  border-color: rgba(212, 160, 176, 0.25);
+  box-shadow: 0 4px 24px rgba(196, 125, 149, 0.10);
+}
+
+/* ── Pro pricing card ────────────────────────────────────── */
+.salon-pro-card {
+  background: linear-gradient(135deg, rgba(196, 125, 149, 0.12) 0%, rgba(212, 160, 176, 0.06) 100%);
+  border: 1px solid rgba(212, 160, 176, 0.25);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 0 60px rgba(196, 125, 149, 0.12), inset 0 1px 0 rgba(245, 198, 216, 0.10);
+}
+
+/* ── Final CTA section ───────────────────────────────────── */
+.salon-final-cta {
+  background: rgba(212, 160, 176, 0.05);
+  border: 1px solid rgba(212, 160, 176, 0.18);
+  box-shadow: 0 0 80px rgba(196, 125, 149, 0.15);
+}
+
+/* ── Primary button (salon) ──────────────────────────────── */
+.salon-btn-primary {
+  background: linear-gradient(135deg, #c47d95, #d4a0b0, #f5c6d8) !important;
+  color: #1a0a10 !important;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(196, 125, 149, 0.35) !important;
+  transition: box-shadow 0.2s, transform 0.2s !important;
+}
+.salon-btn-primary:hover {
+  box-shadow: 0 6px 30px rgba(196, 125, 149, 0.5) !important;
+  transform: translateY(-1px);
+}
