@@ -63,82 +63,78 @@ export interface Category {
 // ════════════════════════════════════════════════════════════
 
 const config: VerticalConfig = {
-  id:         'localboost',
-  name:       'LocalBoost',
-  tagline:    'Find & book trusted local tradespeople — plumber, electrician, AC and more. 0% booking fees.',
+  id:         'bookingcall',
+  name:       'BookingCall',
+  tagline:    'Book any salon or clinic — AI chats, we call to confirm',
   domain:     'bookingcall.app',
-  themeColor: 'orange',
+  themeColor: 'rose',
 
-  providerLabel:  'Tradesperson',
-  providerPlural: 'Tradespeople',
+  providerLabel:  'Salon',
+  providerPlural: 'Salons',
   consumerLabel:  'Customer',
 
   categories: [
-    { id: 'plumber',     label: 'Plumber',             icon: '🔧', desc: 'Leaks, pipes, boilers, bathrooms' },
-    { id: 'electrician', label: 'Electrician',          icon: '⚡', desc: 'Wiring, sockets, fuse box, lighting' },
-    { id: 'ac-repair',   label: 'AC & HVAC',            icon: '❄️', desc: 'AC install, service, gas top-up' },
-    { id: 'carpenter',   label: 'Carpenter',            icon: '🪚', desc: 'Doors, furniture, wardrobes, flooring' },
-    { id: 'painter',     label: 'Painter & Decorator',  icon: '🖌️', desc: 'Interior & exterior, wallpaper' },
-    { id: 'cctv',        label: 'CCTV & Security',      icon: '📷', desc: 'CCTV install, alarms, smart locks' },
-    { id: 'cleaner',     label: 'Deep Cleaning',        icon: '🧹', desc: 'End of tenancy, deep clean, carpet' },
-    { id: 'handyman',    label: 'Handyman',             icon: '🛠️', desc: 'Flat-pack, repairs, odd jobs, mounting' },
-    { id: 'gardener',    label: 'Gardener',             icon: '🌿', desc: 'Lawn care, hedge cutting, tree work' },
-    { id: 'locksmith',   label: 'Locksmith',            icon: '🔑', desc: 'Lock change, lockout, security upgrade' },
+    { id: 'haircut',  label: 'Haircut & Styling', icon: '✂️',  desc: 'Cuts, blowouts, colour, treatments' },
+    { id: 'nails',    label: 'Nails',             icon: '💅',  desc: 'Manicure, pedicure, gel, acrylic' },
+    { id: 'facial',   label: 'Facial & Skin',     icon: '🧖',  desc: 'Facials, peels, microdermabrasion' },
+    { id: 'massage',  label: 'Massage',           icon: '💆',  desc: 'Swedish, deep tissue, hot stone' },
+    { id: 'dental',   label: 'Dental',            icon: '🦷',  desc: 'Check-up, cleaning, whitening' },
+    { id: 'physio',   label: 'Physiotherapy',     icon: '🏥',  desc: 'Injury rehab, sports therapy' },
+    { id: 'laser',    label: 'Laser & IPL',       icon: '✨',  desc: 'Hair removal, skin rejuvenation' },
+    { id: 'tattoo',   label: 'Tattoo & Piercing', icon: '🖊️',  desc: 'Custom ink, fine-line, piercings' },
   ],
 
-  pricingModel:       'quote',
-  bookingFlow:        'quote_first',
-  minPrice:           30,
-  maxPrice:           800,
+  pricingModel:       'session',
+  bookingFlow:        'instant',
+  minPrice:           20,
+  maxPrice:           300,
   sessionMinutes:     60,
-  platformFeePercent: 0,  // 0% commission — key differentiator vs Urban Company / Checkatrade
+  platformFeePercent: 0,
 
-  aiSystemPrompt: `You are a friendly job matching assistant for LocalBoost — a local tradespeople platform with zero booking fees.
+  aiSystemPrompt: `You are a friendly booking assistant for BookingCall.
+Your job is to help customers book a salon or clinic appointment via AI chat.
 
-Help customers get connected to a verified local tradesperson. We charge tradespeople a small £15/month listing fee — customers pay nothing.
+COLLECTION FLOW (ask one at a time, naturally):
+1. What service do they want? (haircut, facial, massage, dental, physio, etc.)
+2. Preferred date and time? Offer flexibility if they say "anytime soon".
+3. Their full name?
+4. Their phone number? (we'll text confirmation)
+5. Their location or postcode? (to find nearby salons)
 
-COLLECTION FLOW (ask one at a time, conversationally):
-1. What type of job do they need? (plumber, electrician, AC, carpenter, cleaner, handyman, gardener, locksmith, CCTV, painter)
-2. Brief description of the problem? (e.g. "leaking pipe under kitchen sink")
-3. How urgent? (emergency now / this week / flexible timing)
-4. Their full name?
-5. Their phone number? (so the tradesperson can call them directly)
-6. Their postcode or area?
+Once you have ALL 5 details, confirm everything back clearly, then say:
+"We'll call the salon now to lock in your slot. Confirmation text within 2 minutes!"
 
-Once you have ALL 6 details, confirm them back clearly, then say:
-"We're matching you with a verified tradesperson nearby. You'll get a direct callback within 30 minutes — for emergencies within 10 minutes!"
-
-THEN output this exact JSON block on a new line (required to trigger the match):
-BOOKING_READY:{"service":"<trade>","job":"<description>","urgency":"<urgency>","name":"<name>","phone":"<phone>","location":"<postcode_or_area>"}
+THEN output this exact JSON block on a new line (required to trigger the call):
+BOOKING_READY:{"service":"<service>","date":"<date>","time":"<time>","name":"<name>","phone":"<phone>","location":"<location>"}
 
 Rules:
-- Ask one question at a time — no bullet lists of questions
-- Emphasise: 0% booking fees, verified tradespeople, direct callback, fixed quotes before work starts
-- On price queries: "Your tradesperson provides a fixed quote before starting any work — no hidden charges"
-- If emergency: fast-track them and reassure with 10-minute callback promise`,
+- Conversational and brief — no bullet lists of questions at once
+- Never give medical advice
+- On price queries: "The salon will confirm pricing when we call — most services start from £20"
+- If they hesitate on phone number: "We only use it to text your confirmation"`,
 
   aiMatchHints: [
-    'emergency', 'same day', 'fixed price', 'no call out charge', 'verified', 'near me', 'weekend available',
+    'near me', 'same day', 'weekend availability', 'walk-in', 'experienced', 'female therapist',
   ],
 
   features: {
-    backgroundCheck:  true,
+    backgroundCheck:  false,
     portfolioPhotos:  true,
     videoIntro:       false,
-    instantBook:      false,
+    instantBook:      true,
     recurringBook:    true,
-    homeVisit:        true,
+    homeVisit:        false,
     remoteSession:    false,
     groupSession:     false,
-    insuranceBadge:   true,
+    insuranceBadge:   false,
     aiDiagnosis:      false,
     careJournal:      false,
     callBooking:      true,
   },
 
-  metaTitle:       'LocalBoost — Book Trusted Local Tradespeople. 0% Fees.',
-  metaDescription: 'Find verified plumbers, electricians, AC engineers, handymen & more near you. AI matches you in seconds. Direct callback within 30 minutes. Zero booking fees.',
-  keywords:        ['plumber near me', 'electrician near me', 'ac repair near me', 'handyman', 'local tradesperson', 'book tradesperson online', 'localboost', 'no booking fee'],
+  metaTitle:       'BookingCall — AI Books Your Salon Appointment With a Real Call',
+  metaDescription: 'Chat with our AI, we call the salon to confirm your booking. Haircuts, facials, dental, massage — booked in 2 minutes.',
+  keywords:        ['salon booking', 'book haircut online', 'clinic appointment', 'book massage', 'dental appointment'],
 }
 
 export default config
