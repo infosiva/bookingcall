@@ -49,13 +49,22 @@ export async function POST(req: NextRequest) {
           status: string
           salon?: { name: string; phone: string; address: string }
           callSid?: string
+          whatsappUrl?: string
         }
+
+        // WhatsApp fallback — append link to AI reply
+        let finalReply = cleanReply
+        if (callData.status === 'whatsapp_fallback' && callData.whatsappUrl && callData.salon) {
+          finalReply += `\n\n📲 [Tap to message ${callData.salon.name} on WhatsApp](${callData.whatsappUrl}) — your booking details are pre-filled.`
+        }
+
         return NextResponse.json({
-          reply:            cleanReply,
+          reply:            finalReply,
           bookingTriggered: true,
           booking,
           salon:            callData.salon,
           callStatus:       callData.status,
+          whatsappUrl:      callData.whatsappUrl,
         })
       } catch (e) {
         console.error('[call trigger]', e)

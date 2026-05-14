@@ -98,6 +98,30 @@ const SERVICE_QUERY_MAP: Record<string, string> = {
   ipl:           'laser clinic',
   tattoo:        'tattoo studio',
   piercing:      'piercing studio',
+  // ── Restaurants ──
+  restaurant:    'restaurant',
+  table:         'restaurant',
+  dinner:        'restaurant',
+  lunch:         'restaurant',
+  brunch:        'restaurant',
+  indian:        'Indian restaurant',
+  italian:       'Italian restaurant',
+  chinese:       'Chinese restaurant',
+  sushi:         'sushi restaurant',
+  pizza:         'pizza restaurant',
+  // ── Hotels ──
+  hotel:         'hotel',
+  room:          'hotel',
+  stay:          'hotel',
+  checkin:       'hotel',
+  accommodation: 'hotel',
+  // ── Other local ──
+  gym:           'gym fitness center',
+  yoga:          'yoga studio',
+  barber:        'barber shop',
+  vet:           'veterinary clinic',
+  optician:      'optician',
+  pharmacy:      'pharmacy',
 }
 
 function buildSearchQuery(service: string, location: string): string {
@@ -249,12 +273,19 @@ export async function POST(req: NextRequest) {
 
     console.log(`[call] Found via ${source}: "${salon.name}" — ${salon.phone}`)
 
-    // 3. Check Twilio configured
+    // 3. Check Twilio configured — fallback to WhatsApp deep link
     if (!process.env.TWILIO_ACCOUNT_SID || !process.env.TWILIO_FROM_NUMBER) {
-      console.warn('[call] Twilio not configured — logging only')
+      console.warn('[call] Twilio not configured — returning WhatsApp fallback')
+      const waMsg = encodeURIComponent(
+        `Hi! I'd like to book a ${booking.service} appointment.\n` +
+        `Name: ${booking.name}\n` +
+        `Date: ${booking.date} at ${booking.time}\n` +
+        `Please confirm availability. Thank you!`
+      )
+      const waNumber = salon.phone.replace(/[^0-9]/g, '')
       return NextResponse.json({
-        status: 'skipped',
-        reason: 'twilio_not_configured',
+        status: 'whatsapp_fallback',
+        whatsappUrl: `https://wa.me/${waNumber}?text=${waMsg}`,
         source,
         salon,
         booking,

@@ -65,23 +65,23 @@ export interface Category {
 const config: VerticalConfig = {
   id:         'bookingcall',
   name:       'BookingCall',
-  tagline:    'Book any salon or clinic — AI chats, we call to confirm',
+  tagline:    'Book any local business — AI chats, we call to confirm your slot',
   domain:     'bookingcall.app',
   themeColor: 'rose',
 
-  providerLabel:  'Salon',
-  providerPlural: 'Salons',
+  providerLabel:  'Business',
+  providerPlural: 'Businesses',
   consumerLabel:  'Customer',
 
   categories: [
-    { id: 'haircut',  label: 'Haircut & Styling', icon: '✂️',  desc: 'Cuts, blowouts, colour, treatments' },
-    { id: 'nails',    label: 'Nails',             icon: '💅',  desc: 'Manicure, pedicure, gel, acrylic' },
-    { id: 'facial',   label: 'Facial & Skin',     icon: '🧖',  desc: 'Facials, peels, microdermabrasion' },
-    { id: 'massage',  label: 'Massage',           icon: '💆',  desc: 'Swedish, deep tissue, hot stone' },
-    { id: 'dental',   label: 'Dental',            icon: '🦷',  desc: 'Check-up, cleaning, whitening' },
-    { id: 'physio',   label: 'Physiotherapy',     icon: '🏥',  desc: 'Injury rehab, sports therapy' },
-    { id: 'laser',    label: 'Laser & IPL',       icon: '✨',  desc: 'Hair removal, skin rejuvenation' },
-    { id: 'tattoo',   label: 'Tattoo & Piercing', icon: '🖊️',  desc: 'Custom ink, fine-line, piercings' },
+    { id: 'restaurant', label: 'Restaurant',        icon: '🍽️', desc: 'Table booking for any cuisine' },
+    { id: 'haircut',    label: 'Haircut & Styling',  icon: '✂️', desc: 'Cuts, blowouts, colour, treatments' },
+    { id: 'hotel',      label: 'Hotel / B&B',        icon: '🏨', desc: 'Room booking, check-in enquiries' },
+    { id: 'massage',    label: 'Massage & Spa',      icon: '💆', desc: 'Swedish, deep tissue, hot stone' },
+    { id: 'dental',     label: 'Dental',             icon: '🦷', desc: 'Check-up, cleaning, whitening' },
+    { id: 'physio',     label: 'Physiotherapy',      icon: '🏥', desc: 'Injury rehab, sports therapy' },
+    { id: 'gym',        label: 'Gym & Fitness',      icon: '💪', desc: 'Trial sessions, memberships, classes' },
+    { id: 'tattoo',     label: 'Tattoo & Piercing',  icon: '🖊️', desc: 'Custom ink, fine-line, piercings' },
   ],
 
   pricingModel:       'session',
@@ -92,29 +92,37 @@ const config: VerticalConfig = {
   platformFeePercent: 0,
 
   aiSystemPrompt: `You are a friendly booking assistant for BookingCall.
-Your job is to help customers book a salon or clinic appointment via AI chat.
+Your job is to help customers book ANY local business — restaurant, salon, hotel, gym, clinic, or any other service — via AI chat. We find the business using their location and call them to confirm.
 
 COLLECTION FLOW (ask one at a time, naturally):
-1. What service do they want? (haircut, facial, massage, dental, physio, etc.)
-2. Preferred date and time? Offer flexibility if they say "anytime soon".
+1. What do they want to book? (restaurant table, haircut, hotel room, massage, dental, gym class, etc.)
+2. Preferred date and time? For restaurants ask party size too. Offer flexibility if "anytime soon".
 3. Their full name?
-4. Their phone number? (we'll text confirmation)
-5. Their location or postcode? (to find nearby salons)
+4. Their phone number? (we'll send confirmation)
+5. Their location or postcode? (to find the right business nearby)
 
-Once you have ALL 5 details, confirm everything back clearly, then say:
-"We'll call the salon now to lock in your slot. Confirmation text within 2 minutes!"
+Once you have ALL details, confirm clearly, then say:
+"Perfect! We'll call them now to lock in your booking. You'll hear back within 2 minutes!"
 
 THEN output this exact JSON block on a new line (required to trigger the call):
 BOOKING_READY:{"service":"<service>","date":"<date>","time":"<time>","name":"<name>","phone":"<phone>","location":"<location>"}
 
+Examples of what you can book:
+- "Table for 2 at an Italian restaurant tonight" → service: "italian restaurant table for 2"
+- "Haircut tomorrow at 11am" → service: "haircut"
+- "Hotel room for Friday night" → service: "hotel room"
+- "Dental check-up next week" → service: "dental"
+- "60 minute massage Saturday afternoon" → service: "massage"
+
 Rules:
 - Conversational and brief — no bullet lists of questions at once
 - Never give medical advice
-- On price queries: "The salon will confirm pricing when we call — most services start from £20"
-- If they hesitate on phone number: "We only use it to text your confirmation"`,
+- On price queries: "The business will confirm pricing when we call"
+- If they hesitate on phone number: "We only use it to confirm your booking"
+- If business type is unclear, ask one clarifying question`,
 
   aiMatchHints: [
-    'near me', 'same day', 'weekend availability', 'walk-in', 'experienced', 'female therapist',
+    'near me', 'same day', 'tonight', 'this weekend', 'walk-in', 'table for two', 'group booking',
   ],
 
   features: {
@@ -125,16 +133,16 @@ Rules:
     recurringBook:    true,
     homeVisit:        false,
     remoteSession:    false,
-    groupSession:     false,
+    groupSession:     true,
     insuranceBadge:   false,
     aiDiagnosis:      false,
     careJournal:      false,
     callBooking:      true,
   },
 
-  metaTitle:       'BookingCall — AI Books Your Salon Appointment With a Real Call',
-  metaDescription: 'Chat with our AI, we call the salon to confirm your booking. Haircuts, facials, dental, massage — booked in 2 minutes.',
-  keywords:        ['salon booking', 'book haircut online', 'clinic appointment', 'book massage', 'dental appointment'],
+  metaTitle:       'BookingCall — AI Books Any Local Business With a Real Phone Call',
+  metaDescription: 'Book restaurants, salons, hotels, gyms, clinics — just chat with our AI and we call to confirm your slot. No hold music, no forms.',
+  keywords:        ['restaurant booking', 'salon booking', 'hotel booking', 'book table online', 'clinic appointment', 'AI booking assistant'],
 }
 
 export default config
