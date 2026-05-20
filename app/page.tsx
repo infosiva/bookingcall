@@ -128,7 +128,7 @@ export default function HomePage() {
       </div>
 
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="relative px-6 pt-24 pb-32 max-w-6xl mx-auto">
+      <section className="relative px-6 pt-12 pb-32 max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-16">
 
           {/* Left: copy */}
@@ -210,7 +210,7 @@ export default function HomePage() {
       </section>
 
       {/* ── SERVICES GRID ─────────────────────────────────────── */}
-      <section className="py-24 px-6 max-w-6xl mx-auto">
+      <section className="py-12 px-6 max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
             Every Beauty Service, <span className="salon-gradient-text">One Place</span>
@@ -238,7 +238,7 @@ export default function HomePage() {
       </section>
 
       {/* ── HOW IT WORKS ──────────────────────────────────────── */}
-      <section className="py-24 px-6 salon-glass border-y border-rose-500/10">
+      <section className="py-12 px-6 salon-glass border-y border-rose-500/10">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
@@ -271,7 +271,7 @@ export default function HomePage() {
       </section>
 
       {/* ── FEATURED SALONS ───────────────────────────────────── */}
-      <section className="py-24 px-6 max-w-6xl mx-auto">
+      <section className="py-12 px-6 max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
             Featured <span className="salon-gradient-text">Salons</span>
@@ -313,7 +313,7 @@ export default function HomePage() {
       </section>
 
       {/* ── SOCIAL PROOF ──────────────────────────────────────── */}
-      <section className="py-24 px-6 salon-glass border-y border-rose-500/10">
+      <section className="py-12 px-6 salon-glass border-y border-rose-500/10">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
@@ -345,7 +345,7 @@ export default function HomePage() {
       </section>
 
       {/* ── SALON OWNER / PRO CTA ─────────────────────────────── */}
-      <section className="py-24 px-6 max-w-6xl mx-auto">
+      <section className="py-12 px-6 max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Left: free listing */}
           <div className="salon-card p-8 relative overflow-hidden">
@@ -399,7 +399,7 @@ export default function HomePage() {
       </section>
 
       {/* ── WHY BOOKINGCALL ───────────────────────────────────── */}
-      <section className="py-20 px-6 salon-glass border-t border-rose-500/10">
+      <section className="py-10 px-6 salon-glass border-t border-rose-500/10">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-3">
