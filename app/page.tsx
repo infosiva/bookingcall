@@ -5,30 +5,6 @@ import { theme, btn } from '@/lib/theme'
 import HeroChatPreview from '@/components/HeroChatPreview'
 
 // ── Data ─────────────────────────────────────────────────────
-const SOCIAL_PROOF = [
-  {
-    name: 'Priya K.',
-    role: 'Mayfair, London',
-    text: 'Booked a balayage at Velvet Touch in under 3 minutes. The AI asked exactly the right questions and the salon confirmed almost instantly. Magical!',
-    rating: 5,
-    avatar: 'PK',
-  },
-  {
-    name: 'James T.',
-    role: 'Canary Wharf',
-    text: 'No more sitting on hold. I chat, they call my barber. Have used it every month — genuinely the fastest way to book.',
-    rating: 5,
-    avatar: 'JT',
-  },
-  {
-    name: 'Sarah M.',
-    role: 'Shoreditch',
-    text: 'Facial booked while I was on the Tube. Confirmation SMS before I reached my stop. This is how booking should work.',
-    rating: 5,
-    avatar: 'SM',
-  },
-]
-
 const SERVICES = [
   { icon: '✂️', label: 'Haircut & Style',       price: 'from £25', id: 'haircut' },
   { icon: '🎨', label: 'Colour & Highlights',    price: 'from £65', id: 'colour' },
@@ -66,8 +42,6 @@ const FEATURED_SALONS = [
   {
     name: 'Velvet Touch Salon',
     location: 'Mayfair, London',
-    rating: 4.9,
-    reviews: 312,
     specialty: 'Hair Colour & Balayage',
     badge: '⚡ Fast confirmer',
     emoji: '💇',
@@ -75,17 +49,13 @@ const FEATURED_SALONS = [
   {
     name: 'Bloom Beauty Bar',
     location: 'Shoreditch, London',
-    rating: 4.8,
-    reviews: 276,
     specialty: 'Facials & Skin Therapy',
-    badge: '🌟 Top rated',
+    badge: '🌟 Verified salon',
     emoji: '🌸',
   },
   {
     name: "The Barber's Den",
     location: 'Canary Wharf',
-    rating: 4.9,
-    reviews: 198,
     specialty: "Men's Grooming",
     badge: '🏆 Premium',
     emoji: '🪒',
@@ -179,7 +149,7 @@ export default function HomePage() {
 
             {/* Trust row */}
             <div className="flex flex-wrap items-center gap-5 justify-center lg:justify-start text-sm text-white/45">
-              <span className="flex items-center gap-1.5"><CheckCircle size={14} className="text-rose-400" />5,000+ salons</span>
+              <span className="flex items-center gap-1.5"><CheckCircle size={14} className="text-rose-400" />AI-powered calls</span>
               <span className="flex items-center gap-1.5"><CheckCircle size={14} className="text-rose-400" />2-min booking</span>
               <span className="flex items-center gap-1.5"><CheckCircle size={14} className="text-rose-400" />Free to use</span>
             </div>
@@ -196,10 +166,10 @@ export default function HomePage() {
       <section className="border-y border-rose-500/10 py-10 salon-glass">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { n: '5,000+', l: 'Verified Salons' },
-            { n: '98%',    l: 'Satisfaction rate' },
-            { n: '< 2min', l: 'Avg booking time' },
-            { n: '£0',     l: 'Free to use' },
+            { n: 'AI',      l: 'Powered matching' },
+            { n: '< 2min',  l: 'Avg booking time' },
+            { n: 'SMS',     l: 'Instant confirmation' },
+            { n: '£0',      l: 'Free to use' },
           ].map(s => (
             <div key={s.l}>
               <div className="text-2xl font-extrabold salon-gradient-text">{s.n}</div>
@@ -294,13 +264,7 @@ export default function HomePage() {
                 {salon.name}
               </h3>
               <p className="text-white/40 text-xs mb-3">{salon.location}</p>
-              <p className="text-rose-300/80 text-xs font-medium mb-4">{salon.specialty}</p>
-              {/* Rating */}
-              <div className="flex items-center gap-1.5 mb-5">
-                <span className="text-amber-400 text-sm">{'★'.repeat(5)}</span>
-                <span className="text-white font-bold text-sm">{salon.rating}</span>
-                <span className="text-white/35 text-xs">({salon.reviews} reviews)</span>
-              </div>
+              <p className="text-rose-300/80 text-xs font-medium mb-5">{salon.specialty}</p>
               <Link
                 href={`/chat?salon=${encodeURIComponent(salon.name)}`}
                 className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-rose-300 border border-rose-500/25 hover:bg-rose-500/10 hover:border-rose-400/40 transition-all duration-200"
@@ -312,33 +276,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── SOCIAL PROOF ──────────────────────────────────────── */}
+      {/* ── WHY IT WORKS ──────────────────────────────────────── */}
       <section className="py-12 px-6 salon-glass border-y border-rose-500/10">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-              Loved by <span className="salon-gradient-text">Thousands</span>
-            </h2>
-            <div className="flex items-center justify-center gap-1 text-amber-400">
-              {'★★★★★'}
-              <span className="text-white/50 text-sm ml-2">4.9 average · 3,200+ reviews</span>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {SOCIAL_PROOF.map((r, i) => (
-              <div key={i} className="salon-review-card">
-                <div className="stars text-sm mb-3">{'★'.repeat(r.rating)}</div>
-                <p className="text-white/70 text-sm leading-relaxed mb-5 flex-1">&ldquo;{r.text}&rdquo;</p>
-                <div className="flex items-center gap-3 mt-auto">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-rose-500 to-pink-400 flex items-center justify-center text-white text-xs font-bold">
-                    {r.avatar}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-white text-sm">{r.name}</div>
-                    <div className="text-white/35 text-xs">{r.role}</div>
-                  </div>
-                </div>
-              </div>
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Booking the way it <span className="salon-gradient-text">should be</span>
+          </h2>
+          <p className="text-white/45 mb-10 max-w-lg mx-auto">No hold music. No forms. No back-and-forth. Our AI handles the call so you don&apos;t have to.</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              '🎙 Describe in plain English',
+              '📞 We call the salon',
+              '📱 SMS confirmation',
+              '🚫 No hold music',
+              '£0 Free to use',
+              '⚡ Under 2 minutes',
+              '🔄 Rebook same stylist',
+              '✅ Live availability check',
+            ].map(pill => (
+              <span key={pill} className="px-4 py-2 rounded-full bg-rose-500/10 border border-rose-500/20 text-white/70 text-sm font-medium">
+                {pill}
+              </span>
             ))}
           </div>
         </div>
