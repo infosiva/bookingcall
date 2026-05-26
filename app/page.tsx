@@ -59,8 +59,8 @@ export default function HomePage() {
       </div>
 
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="relative px-6 pt-12 pb-24 max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+      <section className="relative px-6 pt-10 pb-14 max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row items-center gap-10">
 
           {/* Left: copy */}
           <div className="flex-1 text-center lg:text-left fade-up">
@@ -122,8 +122,8 @@ export default function HomePage() {
       </section>
 
       {/* ── STATS BAR ─────────────────────────────────────────── */}
-      <section className="border-y border-rose-500/10 py-10 salon-glass">
-        <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <section className="border-y border-rose-500/10 py-5 salon-glass">
+        <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-5 text-center py-2">
           {[
             { n: 'AI',      l: 'Powered matching' },
             { n: '< 2min',  l: 'Avg booking time' },
@@ -139,14 +139,14 @@ export default function HomePage() {
       </section>
 
       {/* ── CATEGORIES GRID (from vertical.config) ────────────── */}
-      <section className="py-14 px-6 max-w-6xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+      <section className="py-10 px-6 max-w-6xl mx-auto">
+        <div className="text-center mb-7">
+          <h2 className="text-2xl font-bold text-white mb-2">
             Book <span className="salon-gradient-text">Any Business</span>, Any Time
           </h2>
-          <p className="text-white/45 max-w-md mx-auto">Pick a category or just describe what you need in plain English</p>
+          <p className="text-white/45 max-w-md mx-auto text-sm">Pick a category or just describe what you need in plain English</p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {config.categories.map(cat => (
             <Link
               key={cat.id}
@@ -167,28 +167,28 @@ export default function HomePage() {
       </section>
 
       {/* ── HOW IT WORKS ──────────────────────────────────────── */}
-      <section className="py-12 px-6 salon-glass border-y border-rose-500/10">
+      <section className="py-10 px-6 salon-glass border-y border-rose-500/10">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+          <div className="text-center mb-7">
+            <h2 className="text-2xl font-bold text-white mb-2">
               From Chat to <span className="salon-gradient-text">Confirmed</span> in 3 Steps
             </h2>
-            <p className="text-white/45">No back-and-forth. No hold music. Just booked.</p>
+            <p className="text-white/45 text-sm">No back-and-forth. No hold music. Just booked.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 relative">
-            <div className="hidden md:block absolute top-9 left-[calc(16.6%+1rem)] right-[calc(16.6%+1rem)] h-px bg-gradient-to-r from-rose-500/20 via-rose-400/40 to-rose-500/20" />
+          <div className="grid md:grid-cols-3 gap-5 relative">
+            <div className="hidden md:block absolute top-7 left-[calc(16.6%+1rem)] right-[calc(16.6%+1rem)] h-px bg-gradient-to-r from-rose-500/20 via-rose-400/40 to-rose-500/20" />
             {HOW_IT_WORKS.map(step => (
               <div key={step.step} className="relative text-center flex flex-col items-center">
-                <div className={`w-[72px] h-[72px] rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white mb-5 salon-step-icon shadow-lg shadow-rose-500/20`}>
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white mb-3 salon-step-icon shadow-lg shadow-rose-500/20`}>
                   {step.icon}
                 </div>
-                <div className="absolute top-0 right-[calc(50%-36px-20px)] text-xs font-bold text-rose-400/50 font-mono">{step.step}</div>
-                <h3 className="font-bold text-white text-lg mb-2">{step.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed max-w-[220px]">{step.desc}</p>
+                <div className="absolute top-0 right-[calc(50%-28px-20px)] text-xs font-bold text-rose-400/50 font-mono">{step.step}</div>
+                <h3 className="font-bold text-white text-sm mb-1">{step.title}</h3>
+                <p className="text-white/50 text-xs leading-relaxed max-w-[220px]">{step.desc}</p>
               </div>
             ))}
           </div>
-          <div className="text-center mt-12">
+          <div className="text-center mt-7">
             <Link href="/chat" className={`${btn.primary} text-sm px-6 py-3`}>
               Try it now — free <ArrowRight size={15} />
             </Link>
@@ -197,12 +197,12 @@ export default function HomePage() {
       </section>
 
       {/* ── FEATURE PILLS ─────────────────────────────────────── */}
-      <section className="py-10 px-6 salon-glass border-y border-rose-500/10">
+      <section className="py-8 px-6 salon-glass border-y border-rose-500/10">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-2xl font-bold text-white mb-3">
             Booking the way it <span className="salon-gradient-text">should be</span>
           </h2>
-          <p className="text-white/45 mb-10 max-w-lg mx-auto">No hold music. No forms. No back-and-forth. Our AI handles the call so you don&apos;t have to.</p>
+          <p className="text-white/45 mb-6 max-w-lg mx-auto text-sm">No hold music. No forms. No back-and-forth. Our AI handles the call so you don&apos;t have to.</p>
           <div className="flex flex-wrap justify-center gap-3">
             {[
               '🎙 Describe in plain English',
@@ -223,17 +223,17 @@ export default function HomePage() {
       </section>
 
       {/* ── BUSINESS OWNER CTA ────────────────────────────────── */}
-      <section className="py-12 px-6 max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
+      <section className="py-10 px-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-5 items-center">
           {/* Free listing */}
-          <div className="salon-card p-8 relative overflow-hidden">
+          <div className="salon-card p-6 relative overflow-hidden">
             <div className="salon-card-shimmer" />
-            <div className="text-3xl mb-4">🏪</div>
-            <h3 className="text-2xl font-bold text-white mb-2">List Your {config.providerLabel} <span className="salon-gradient-text">Free</span></h3>
-            <p className="text-white/50 text-sm mb-6 leading-relaxed">
+            <div className="text-2xl mb-3">🏪</div>
+            <h3 className="text-xl font-bold text-white mb-2">List Your {config.providerLabel} <span className="salon-gradient-text">Free</span></h3>
+            <p className="text-white/50 text-sm mb-5 leading-relaxed">
               Get discovered by customers looking to book right now. No setup fee, no monthly contract for the base listing.
             </p>
-            <ul className="space-y-2.5 mb-7">
+            <ul className="space-y-2 mb-5">
               {['Free listing in our directory', 'Bookings via AI chat', 'Customer reviews', 'Profile page included'].map(f => (
                 <li key={f} className="flex items-center gap-2.5 text-sm text-white/65">
                   <CheckCircle size={15} className="text-rose-400 flex-shrink-0" />{f}
@@ -246,22 +246,22 @@ export default function HomePage() {
           </div>
 
           {/* Pro plan */}
-          <div className="salon-pro-card relative overflow-hidden p-8">
+          <div className="salon-pro-card relative overflow-hidden p-6">
             <div className="salon-card-shimmer" />
-            <div className="flex items-center justify-between mb-4">
-              <div className="text-3xl">⭐</div>
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-2xl">⭐</div>
               <span className="text-[10px] font-bold px-3 py-1 rounded-full bg-rose-400/20 text-rose-200 border border-rose-400/30 uppercase tracking-wider">
                 Most Popular
               </span>
             </div>
-            <h3 className="text-2xl font-bold text-white mb-1">
+            <h3 className="text-xl font-bold text-white mb-1">
               {config.name} <span className="salon-gradient-text">Pro</span>
             </h3>
-            <div className="flex items-baseline gap-1 mb-5">
-              <span className="text-4xl font-extrabold text-white">$29</span>
+            <div className="flex items-baseline gap-1 mb-4">
+              <span className="text-3xl font-extrabold text-white">$29</span>
               <span className="text-white/40 text-sm">/month</span>
             </div>
-            <ul className="space-y-2.5 mb-7">
+            <ul className="space-y-2 mb-5">
               {PRO_FEATURES.map(f => (
                 <li key={f} className="flex items-center gap-2.5 text-sm text-white/75">
                   <Zap size={14} className="text-rose-300 flex-shrink-0" />{f}
@@ -277,29 +277,29 @@ export default function HomePage() {
       </section>
 
       {/* ── WHY BOOKINGCALL ───────────────────────────────────── */}
-      <section className="py-10 px-6 salon-glass border-t border-rose-500/10">
+      <section className="py-8 px-6 salon-glass border-t border-rose-500/10">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-3">
+          <div className="text-center mb-7">
+            <h2 className="text-2xl font-bold text-white mb-2">
               Why <span className="salon-gradient-text">{config.name}</span>?
             </h2>
-            <p className="text-white/45">Built for how people actually book today</p>
+            <p className="text-white/45 text-sm">Built for how people actually book today</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { icon: <Shield size={20} />, title: 'Verified Businesses', desc: 'Every listing is verified and reviewed before accepting bookings.' },
-              { icon: <Star size={20} />,   title: 'Real Reviews',        desc: 'Genuine reviews from real customers — nothing fabricated.' },
-              { icon: <Zap size={20} />,    title: 'AI Matching',         desc: 'Describe what you want in plain English. No tick boxes.' },
-              { icon: <Users size={20} />,  title: 'Any Category',        desc: 'Restaurants, salons, hotels, gyms, clinics and more.' },
-              { icon: <CheckCircle size={20} />, title: 'Transparent Pricing', desc: 'Starting prices shown upfront. The business confirms exact cost.' },
-              { icon: <Phone size={20} />,  title: 'We Call, Not You',    desc: 'Our system dials the business. You just wait for the SMS.' },
+              { icon: <Shield size={18} />, title: 'Verified Businesses', desc: 'Every listing is verified and reviewed before accepting bookings.' },
+              { icon: <Star size={18} />,   title: 'Real Reviews',        desc: 'Genuine reviews from real customers — nothing fabricated.' },
+              { icon: <Zap size={18} />,    title: 'AI Matching',         desc: 'Describe what you want in plain English. No tick boxes.' },
+              { icon: <Users size={18} />,  title: 'Any Category',        desc: 'Restaurants, salons, hotels, gyms, clinics and more.' },
+              { icon: <CheckCircle size={18} />, title: 'Transparent Pricing', desc: 'Starting prices shown upfront. The business confirms exact cost.' },
+              { icon: <Phone size={18} />,  title: 'We Call, Not You',    desc: 'Our system dials the business. You just wait for the SMS.' },
             ].map(f => (
-              <div key={f.title} className="salon-feature-card flex gap-4 items-start p-5 rounded-2xl border border-rose-500/10 bg-rose-500/5">
-                <div className="w-10 h-10 rounded-xl bg-rose-500/15 flex items-center justify-center text-rose-300 flex-shrink-0">
+              <div key={f.title} className="salon-feature-card flex gap-3 items-start p-4 rounded-2xl border border-rose-500/10 bg-rose-500/5">
+                <div className="w-8 h-8 rounded-lg bg-rose-500/15 flex items-center justify-center text-rose-300 flex-shrink-0">
                   {f.icon}
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white text-sm mb-1">{f.title}</h4>
+                  <h4 className="font-semibold text-white text-sm mb-0.5">{f.title}</h4>
                   <p className="text-white/45 text-xs leading-relaxed">{f.desc}</p>
                 </div>
               </div>
@@ -309,12 +309,12 @@ export default function HomePage() {
       </section>
 
       {/* ── FINAL CTA ─────────────────────────────────────────── */}
-      <section className="py-16 px-6 text-center">
+      <section className="py-10 px-6 text-center">
         <div className="max-w-xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
             Ready to book? <span className="salon-gradient-text">Takes 60 seconds.</span>
           </h2>
-          <p className="text-white/45 mb-8">Free to use. No account needed. Just chat.</p>
+          <p className="text-white/45 mb-6 text-sm">Free to use. No account needed. Just chat.</p>
           <Link href="/chat" className={`${btn.primary} text-base px-10 py-4 salon-btn-primary`}>
             Book Something Now <ArrowRight size={18} />
           </Link>
