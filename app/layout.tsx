@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import config from '@/vertical.config'
 import { getMeshStyle, getScrollbarColor, COLOR_MAP } from '@/lib/themeColors'
 import Navbar from '@/components/Navbar'
+import FloatingChatWrapper from '@/components/FloatingChatWrapper'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
   title:       config.metaTitle,
   description: config.metaDescription,
   keywords:    config.keywords,
+  metadataBase: new URL(`https://${config.domain}`),
 }
 
 // Derive CSS custom properties from vertical theme at build time
@@ -31,6 +34,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       } as React.CSSProperties}
       suppressHydrationWarning
     >
+      <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": config.name,
+          "url": `https://${config.domain}`,
+          "description": config.metaDescription
+        })}} />
+      </head>
       <body className={`${inter.className} min-h-full flex flex-col text-white`}
         style={{ background: colors.base }}
       >
@@ -53,6 +65,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </footer>
+        <FloatingChatWrapper />
+        <Script defer data-site={config.domain} src="http://31.97.56.148:3098/t.js" strategy="afterInteractive" />
       </body>
     </html>
   )
