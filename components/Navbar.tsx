@@ -22,12 +22,12 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8 text-sm text-white/60">
           <Link href="/search"       className="hover:text-white transition-colors">Find a {config.providerLabel}</Link>
           <Link href="/how-it-works" className="hover:text-white transition-colors">How it works</Link>
-          <Link href="/register"     className="hover:text-white transition-colors font-medium text-rose-400/80">For Salons — Free Trial</Link>
+          <Link href="/register"     className="hover:text-white transition-colors font-medium text-rose-400/80">For {config.providerPlural} — Free Trial</Link>
         </div>
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <Link href="/register" className={btn.ghost}>List my salon</Link>
+          <Link href="/register" className={btn.ghost}>List my {config.providerLabel.toLowerCase()}</Link>
           <Link href="/chat"     className={btn.primary}>Book now</Link>
         </div>
 
@@ -42,7 +42,7 @@ export default function Navbar() {
         <div className="md:hidden border-t border-white/[0.06] px-6 py-4 flex flex-col gap-4 text-sm">
           <Link href="/search"       className="text-white/70 hover:text-white" onClick={() => setOpen(false)}>Find a {config.providerLabel}</Link>
           <Link href="/how-it-works" className="text-white/70 hover:text-white" onClick={() => setOpen(false)}>How it works</Link>
-          <Link href="/register"     className="text-rose-400/80 font-medium"   onClick={() => setOpen(false)}>For Salons — Free Trial</Link>
+          <Link href="/register"     className="text-rose-400/80 font-medium"   onClick={() => setOpen(false)}>For {config.providerPlural} — Free Trial</Link>
           <Link href="/chat"         className={btn.primary}                    onClick={() => setOpen(false)}>Book now</Link>
         </div>
       )}
