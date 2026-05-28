@@ -22,6 +22,11 @@ interface SalonInfo {
 
 type CallState = 'idle' | 'searching' | 'calling' | 'confirmed' | 'no_salon'
 
+// Quick-reply chips shown at the start and contextually
+const SERVICE_CHIPS  = ['Haircut', 'Facial', 'Massage', 'Nails', 'Beard trim', 'Highlights']
+const TODAY_SLOTS    = ['9:00 AM', '11:00 AM', '1:00 PM', '3:00 PM', '5:00 PM']
+const TOMORROW_SLOTS = ['10:00 AM', '12:00 PM', '2:00 PM', '4:00 PM']
+
 export default function BookingChatWidget() {
   const [msgs, setMsgs] = useState<Msg[]>([
     {
@@ -34,6 +39,7 @@ export default function BookingChatWidget() {
   const [callState, setCallState] = useState<CallState>('idle')
   const [booking, setBooking]     = useState<BookingDetails | null>(null)
   const [salon, setSalon]         = useState<SalonInfo | null>(null)
+  const [showSlots, setShowSlots] = useState(false)
   const bottomRef                 = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -47,10 +53,22 @@ export default function BookingChatWidget() {
     return () => clearTimeout(t)
   }, [callState])
 
+  function quickSend(text: string) {
+    setInput(text)
+    setTimeout(() => {
+      setInput('')
+      doSend(text)
+    }, 0)
+  }
+
   async function send() {
     const text = input.trim()
     if (!text || loading || callState !== 'idle') return
     setInput('')
+    await doSend(text)
+  }
+
+  async function doSend(text: string) {
 
     const newMsgs: Msg[] = [...msgs, { role: 'user', content: text }]
     setMsgs(newMsgs)
@@ -71,6 +89,14 @@ export default function BookingChatWidget() {
       }
 
       setMsgs(prev => [...prev, { role: 'assistant', content: data.reply }])
+
+      // Show slot picker if AI is asking about date/time
+      const replyLower = data.reply.toLowerCase()
+      if (replyLower.includes('what time') || replyLower.includes('when would') || replyLower.includes('preferred time') || replyLower.includes('which day')) {
+        setShowSlots(true)
+      } else {
+        setShowSlots(false)
+      }
 
       if (data.bookingTriggered && data.booking) {
         setBooking(data.booking)
@@ -213,6 +239,59 @@ export default function BookingChatWidget() {
             >
               Try again
             </button>
+          </div>
+        )}
+
+        {/* Quick service chips — only at start */}
+        {msgs.length === 1 && callState === 'idle' && !loading && (
+          <div className="px-1 pb-1">
+            <p className="text-white/30 text-[10px] uppercase tracking-wider mb-2">Quick select</p>
+            <div className="flex flex-wrap gap-1.5">
+              {SERVICE_CHIPS.map(s => (
+                <button
+                  key={s}
+                  onClick={() => quickSend(s)}
+                  className="text-xs px-3 py-1.5 rounded-full glass text-white/70 hover:text-white hover:bg-white/10 transition-all border border-white/10"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Time slot picker */}
+        {showSlots && callState === 'idle' && !loading && (
+          <div className="px-1 pb-2">
+            <p className="text-white/30 text-[10px] uppercase tracking-wider mb-2">Available slots</p>
+            <div className="mb-1.5">
+              <p className="text-white/40 text-[10px] mb-1">Today</p>
+              <div className="flex flex-wrap gap-1.5">
+                {TODAY_SLOTS.map(t => (
+                  <button
+                    key={t}
+                    onClick={() => { setShowSlots(false); quickSend(`Today at ${t}`) }}
+                    className={`text-xs px-3 py-1.5 rounded-lg glass border border-rose-500/20 text-rose-300 hover:bg-rose-500/10 transition-all`}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="text-white/40 text-[10px] mb-1">Tomorrow</p>
+              <div className="flex flex-wrap gap-1.5">
+                {TOMORROW_SLOTS.map(t => (
+                  <button
+                    key={t}
+                    onClick={() => { setShowSlots(false); quickSend(`Tomorrow at ${t}`) }}
+                    className={`text-xs px-3 py-1.5 rounded-lg glass border border-rose-500/20 text-rose-300 hover:bg-rose-500/10 transition-all`}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         )}
 

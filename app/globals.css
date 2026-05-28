@@ -323,3 +323,6 @@ body {
   box-shadow: 0 6px 30px rgba(196, 125, 149, 0.5) !important;
   transform: translateY(-1px);
 }
+
+/* ── Mobile: prevent horizontal overflow on all devices ── */
+html, body { overflow-x: hidden; max-width: 100%; }
