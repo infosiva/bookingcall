@@ -12,7 +12,7 @@ export default function FloatingChatWrapper() {
   const [open, setOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [msgs, setMsgs] = useState<{ role: 'user' | 'bot'; text: string }[]>([
-    { role: 'bot', text: 'Hi! Need help booking or have a question about our AI voice agent? 📞' },
+    { role: 'bot', text: 'Hi! BookingCall handles bookings for salons, clinics, and local businesses — AI chats, we call to confirm. How can I help?' },
   ])
   const [input, setInput] = useState('')
 
