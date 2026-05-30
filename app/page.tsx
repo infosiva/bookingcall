@@ -138,6 +138,54 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── CALL LOG WIDGET ───────────────────────────────────── */}
+      <section className="py-8 px-6 max-w-6xl mx-auto">
+        <div className="max-w-2xl mx-auto">
+          <div className="rounded-2xl border border-rose-500/15 overflow-hidden" style={{ background: 'rgba(255,255,255,0.02)' }}>
+            <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.06]">
+              <span className="text-sm font-bold text-white">Recent Calls</span>
+              <span className="flex items-center gap-1.5 text-[10px] font-semibold text-rose-400 uppercase tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-rose-400 inline-block animate-pulse" />
+                Live
+              </span>
+            </div>
+            {[
+              { status: 'AI handled', detail: 'Haircut enquiry — Mon 2pm', badge: 'bg-sky-500/15 text-sky-400' },
+              { status: 'Booked',     detail: 'Table for 2 — Sat 7:30pm',  badge: 'bg-green-500/15 text-green-400' },
+              { status: 'Missed',     detail: 'Dental check-up query',      badge: 'bg-red-500/15 text-red-400' },
+            ].map((row, i) => (
+              <div key={i} className="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.04] last:border-0">
+                <div>
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${row.badge} mr-2`}>{row.status}</span>
+                  <span className="text-white/50 text-xs">{row.detail}</span>
+                </div>
+                <span className="text-white/20 text-xs">just now</span>
+              </div>
+            ))}
+            <div className="px-5 py-3 bg-rose-500/5 border-t border-rose-500/10 text-center">
+              <span className="text-xs text-white/35">Connect your number to see real data</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SET UP IN 3 STEPS ─────────────────────────────────── */}
+      <section className="py-6 px-6 max-w-6xl mx-auto">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap">
+          <span className="text-sm font-bold text-white/70">Set up in 3 steps →</span>
+          {[
+            { n: '1', label: 'Add your number' },
+            { n: '2', label: 'Set your hours' },
+            { n: '3', label: 'Go live' },
+          ].map((s, i) => (
+            <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full bg-rose-500/10 border border-rose-500/20 text-sm text-white/70">
+              <span className="w-5 h-5 rounded-full bg-rose-500/30 text-rose-300 text-xs font-bold flex items-center justify-center flex-shrink-0">{s.n}</span>
+              {s.label}
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ── CATEGORIES GRID (from vertical.config) ────────────── */}
       <section className="py-10 px-6 max-w-6xl mx-auto">
         <div className="text-center mb-7">

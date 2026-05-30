@@ -65,7 +65,7 @@ export interface Category {
 const config: VerticalConfig = {
   id:         'bookingcall',
   name:       'BookingCall',
-  tagline:    'Your AI receptionist — books appointments while you focus on the work',
+  tagline:    'Your phone answers itself. Customers book 24/7 — no app, no form, no missed call.',
   domain:     'bookingcall.app',
   themeColor: 'rose',
 
