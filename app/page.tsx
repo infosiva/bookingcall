@@ -65,12 +65,19 @@ export default function HomePage() {
           {/* Left: copy */}
           <div className="flex-1 text-center lg:text-left fade-up">
 
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/15 text-rose-300 border border-rose-500/30 text-xs font-semibold mb-6 uppercase tracking-wider">
-              <Sparkles size={11} />
+            <div
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold mb-6 uppercase tracking-widest"
+              style={{
+                background: 'rgba(255,255,255,0.04)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255,255,255,0.09)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.07)',
+                color: 'rgba(252,165,165,0.82)',
+              }}
+            >
+              <Sparkles size={10} />
               AI-Powered · Free to Use · 60-Second Confirmation
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6">
+            <h1 className="font-black tracking-tight mb-6" style={{ fontSize: 'clamp(2.5rem, 5.5vw, 3.75rem)', lineHeight: 0.97 }}>
               <span className="text-white">Book Any Local</span>
               <br />
               <span className="salon-gradient-text">Business Instantly</span>
