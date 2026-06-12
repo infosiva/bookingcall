@@ -14,6 +14,18 @@ export const metadata: Metadata = {
   description: config.metaDescription,
   keywords:    config.keywords,
   metadataBase: new URL(`https://${config.domain}`),
+  openGraph: {
+    title: config.metaTitle,
+    description: config.metaDescription,
+    type: 'website',
+    images: [{ url: '/og.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: config.metaTitle,
+    description: config.metaDescription,
+    images: ['/og.png'],
+  },
 }
 
 // Derive CSS custom properties from vertical theme at build time
