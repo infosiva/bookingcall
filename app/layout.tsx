@@ -6,6 +6,7 @@ import config from '@/vertical.config'
 import { getMeshStyle, getScrollbarColor, COLOR_MAP } from '@/lib/themeColors'
 import Navbar from '@/components/Navbar'
 import FloatingChatWrapper from '@/components/FloatingChatWrapper'
+import FeedbackWidget from '@/components/FeedbackWidget'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </footer>
         <FloatingChatWrapper />
+        <FeedbackWidget siteName="BookingCall" />
         <Script defer data-site={config.domain} src="http://31.97.56.148:3098/t.js" strategy="afterInteractive" />
       </body>
     </html>
