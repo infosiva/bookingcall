@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle, Zap, Shield, Star, Users, Phone, MessageCircle
 import config from '@/vertical.config'
 import { theme, btn } from '@/lib/theme'
 import HeroChatPreview from '@/components/HeroChatPreview'
+import BookingDemo from '@/components/BookingDemo'
 
 const HOW_IT_WORKS = [
   {
@@ -126,6 +127,11 @@ export default function HomePage() {
             <HeroChatPreview />
           </div>
         </div>
+      </section>
+
+      {/* ── INLINE DEMO ───────────────────────────────────────── */}
+      <section className="px-6 pb-10 max-w-6xl mx-auto">
+        <BookingDemo />
       </section>
 
       {/* ── STATS BAR ─────────────────────────────────────────── */}
