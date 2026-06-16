@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #1a0a10;
-  --foreground: #f5e8ed;
-  --accent:     #d4a0b0;
-  --highlight:  #f5c6d8;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --accent:     #0284c7;
+  --highlight:  #0369a1;
 }
 
 * {
@@ -22,24 +22,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── Salon background ───────────────────────────────────── */
-.salon-bg {
-  background: #1a0a10;
-}
-
-/* mesh-bg is now inline style in layout.tsx — dynamic per vertical */
-
-/* ── Glass cards ────────────────────────────────────────── */
+/* ── Light card base ─────────────────────────────────────── */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.80);
+  border: 1px solid #e2e8f0;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #cbd5e1;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -50,7 +43,7 @@ body {
   100% { background-position:  200% center; }
 }
 .shimmer {
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(2,132,199,0.06) 50%, transparent 100%);
   background-size: 200% 100%;
   animation: shimmer 2s linear infinite;
 }
@@ -71,32 +64,32 @@ body {
 
 /* ── Pulse glow — uses CSS var from layout ──────────────── */
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 20px color-mix(in srgb, var(--theme-primary, #7c3aed) 15%, transparent); }
-  50%       { box-shadow: 0 0 40px color-mix(in srgb, var(--theme-primary, #7c3aed) 35%, transparent); }
+  0%, 100% { box-shadow: 0 0 20px color-mix(in srgb, var(--theme-primary, #0284c7) 15%, transparent); }
+  50%       { box-shadow: 0 0 40px color-mix(in srgb, var(--theme-primary, #0284c7) 35%, transparent); }
 }
 .pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
 
-/* ── Scrollbar — uses CSS var from layout ───────────────── */
+/* ── Scrollbar ───────────────────────────────────────────── */
 ::-webkit-scrollbar       { width: 6px; }
-::-webkit-scrollbar-track { background: var(--theme-base, #0d0920); }
-::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--theme-primary, #7c3aed) 60%, transparent); border-radius: 3px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: rgba(2,132,199,0.35); border-radius: 3px; }
 
-/* ── Custom input styles ────────────────────────────────── */
+/* ── Input styles ────────────────────────────────────────── */
 .input-dark {
   width: 100%;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 12px 16px;
-  color: #f0eeff;
+  color: #0f172a;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .input-dark:focus {
-  border-color: rgba(139,92,246,0.5);
-  box-shadow: 0 0 0 3px rgba(139,92,246,0.12);
+  border-color: rgba(2,132,199,0.5);
+  box-shadow: 0 0 0 3px rgba(2,132,199,0.12);
 }
-.input-dark::placeholder { color: rgba(255,255,255,0.3); }
+.input-dark::placeholder { color: #94a3b8; }
 
 /* ── Star rating ────────────────────────────────────────── */
 .stars { color: #f59e0b; letter-spacing: 2px; }
@@ -118,58 +111,25 @@ body {
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
 /* ═══════════════════════════════════════════════════════════
-   SALON & BEAUTY — Premium design tokens
+   BOOKING — Light service design tokens
    ═══════════════════════════════════════════════════════════ */
 
-/* ── Salon gradient text ─────────────────────────────────── */
+/* ── Gradient text ───────────────────────────────────────── */
 .salon-gradient-text {
-  background: linear-gradient(135deg, #f5c6d8 0%, #d4a0b0 50%, #c47d95 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #075985 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* ── Salon glass panels ──────────────────────────────────── */
+/* ── Cards ───────────────────────────────────────────────── */
 .salon-glass {
-  background: rgba(212, 160, 176, 0.03);
+  background: rgba(2, 132, 199, 0.03);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* ── Aurora orbs (rose-gold background atmosphere) ──────── */
-@keyframes aurora-rose {
-  0%   { transform: translate(0, 0)    scale(1);    opacity: 0.12; }
-  33%  { transform: translate(60px, -40px) scale(1.1); opacity: 0.18; }
-  66%  { transform: translate(-30px, 30px) scale(0.95); opacity: 0.10; }
-  100% { transform: translate(0, 0)    scale(1);    opacity: 0.12; }
-}
-
-.aurora-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-}
-.aurora-orb-1 {
-  width: 600px; height: 600px;
-  top: -100px; left: -150px;
-  background: radial-gradient(circle, #c47d95 0%, #d4a0b0 40%, transparent 70%);
-  animation: aurora-rose 18s ease-in-out infinite;
-}
-.aurora-orb-2 {
-  width: 500px; height: 500px;
-  top: 40%; right: -100px;
-  background: radial-gradient(circle, #f5c6d8 0%, #d4a0b0 50%, transparent 70%);
-  animation: aurora-rose 24s ease-in-out infinite reverse;
-}
-.aurora-orb-3 {
-  width: 400px; height: 400px;
-  bottom: 10%; left: 30%;
-  background: radial-gradient(circle, #d4a0b0 0%, #c47d95 60%, transparent 70%);
-  animation: aurora-rose 20s ease-in-out infinite 5s;
-}
-
-/* ── Floating beauty icons ───────────────────────────────── */
+/* ── Float icons ─────────────────────────────────────────── */
 @keyframes float-beauty {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   25%       { transform: translateY(-12px) rotate(5deg); }
@@ -193,7 +153,7 @@ body {
   width: max-content;
 }
 
-/* ── Shimmer rose (cards) ────────────────────────────────── */
+/* ── Shimmer cards ───────────────────────────────────────── */
 @keyframes shimmer-rose {
   0%   { background-position: -300% center; opacity: 0; }
   30%  { opacity: 1; }
@@ -206,7 +166,7 @@ body {
   background: linear-gradient(
     105deg,
     transparent 30%,
-    rgba(245, 198, 216, 0.06) 50%,
+    rgba(2, 132, 199, 0.06) 50%,
     transparent 70%
   );
   background-size: 300% 100%;
@@ -215,40 +175,37 @@ body {
   animation: shimmer-rose 4s ease-in-out infinite;
 }
 
-/* ── Salon cards ─────────────────────────────────────────── */
+/* ── Service cards ───────────────────────────────────────── */
 .salon-card {
   position: relative;
-  background: rgba(212, 160, 176, 0.04);
-  border: 1px solid rgba(212, 160, 176, 0.12);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 20px;
   padding: 1.5rem;
   transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
 }
 .salon-card:hover {
-  border-color: rgba(212, 160, 176, 0.30);
-  background: rgba(212, 160, 176, 0.07);
-  box-shadow: 0 8px 40px rgba(196, 125, 149, 0.15);
+  border-color: rgba(2,132,199,0.30);
+  background: #f0f9ff;
+  box-shadow: 0 8px 40px rgba(2,132,199,0.10);
 }
 
-/* ── Salon service card ──────────────────────────────────── */
 .salon-service-card {
   display: flex;
   align-items: center;
   gap: 1rem;
   position: relative;
-  background: rgba(212, 160, 176, 0.04);
-  border: 1px solid rgba(212, 160, 176, 0.10);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
   padding: 1.25rem 1.25rem;
   transition: all 0.2s;
   text-decoration: none;
 }
 .salon-service-card:hover {
-  border-color: rgba(212, 160, 176, 0.28);
-  background: rgba(212, 160, 176, 0.08);
-  box-shadow: 0 4px 24px rgba(196, 125, 149, 0.12);
+  border-color: rgba(2,132,199,0.28);
+  background: #f0f9ff;
+  box-shadow: 0 4px 24px rgba(2,132,199,0.10);
   transform: translateY(-2px);
 }
 .salon-service-icon {
@@ -258,7 +215,6 @@ body {
   text-align: center;
 }
 
-/* ── Step icon ───────────────────────────────────────────── */
 .salon-step-icon {
   transition: transform 0.3s;
 }
@@ -266,63 +222,59 @@ body {
   transform: scale(1.08);
 }
 
-/* ── Feature card ────────────────────────────────────────── */
 .salon-feature-card {
-  background: rgba(212, 160, 176, 0.03);
-  border: 1px solid rgba(212, 160, 176, 0.08);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
   padding: 1.25rem;
   transition: all 0.2s;
 }
 .salon-feature-card:hover {
-  border-color: rgba(212, 160, 176, 0.20);
-  background: rgba(212, 160, 176, 0.06);
+  border-color: rgba(2,132,199,0.20);
+  background: #f0f9ff;
 }
 
-/* ── Review card ─────────────────────────────────────────── */
 .salon-review-card {
   display: flex;
   flex-direction: column;
   position: relative;
-  background: rgba(212, 160, 176, 0.04);
-  border: 1px solid rgba(212, 160, 176, 0.10);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 20px;
   padding: 1.5rem;
   transition: all 0.25s;
 }
 .salon-review-card:hover {
-  border-color: rgba(212, 160, 176, 0.25);
-  box-shadow: 0 4px 24px rgba(196, 125, 149, 0.10);
+  border-color: rgba(2,132,199,0.25);
+  box-shadow: 0 4px 24px rgba(2,132,199,0.08);
 }
 
-/* ── Pro pricing card ────────────────────────────────────── */
 .salon-pro-card {
-  background: linear-gradient(135deg, rgba(196, 125, 149, 0.12) 0%, rgba(212, 160, 176, 0.06) 100%);
-  border: 1px solid rgba(212, 160, 176, 0.25);
+  background: linear-gradient(135deg, rgba(2,132,199,0.08) 0%, rgba(3,105,161,0.04) 100%);
+  border: 1px solid rgba(2,132,199,0.20);
   border-radius: 20px;
   padding: 2rem;
-  box-shadow: 0 0 60px rgba(196, 125, 149, 0.12), inset 0 1px 0 rgba(245, 198, 216, 0.10);
+  box-shadow: 0 0 60px rgba(2,132,199,0.08), inset 0 1px 0 rgba(186,230,253,0.30);
 }
 
-/* ── Final CTA section ───────────────────────────────────── */
 .salon-final-cta {
-  background: rgba(212, 160, 176, 0.05);
-  border: 1px solid rgba(212, 160, 176, 0.18);
-  box-shadow: 0 0 80px rgba(196, 125, 149, 0.15);
+  background: rgba(2,132,199,0.04);
+  border: 1px solid rgba(2,132,199,0.15);
+  box-shadow: 0 0 80px rgba(2,132,199,0.10);
 }
 
-/* ── Primary button (salon) ──────────────────────────────── */
+/* ── Primary button ──────────────────────────────────────── */
 .salon-btn-primary {
-  background: linear-gradient(135deg, #c47d95, #d4a0b0, #f5c6d8) !important;
-  color: #1a0a10 !important;
+  background: linear-gradient(135deg, #0284c7, #0369a1, #075985) !important;
+  color: #ffffff !important;
   font-weight: 700;
-  box-shadow: 0 4px 20px rgba(196, 125, 149, 0.35) !important;
+  box-shadow: 0 4px 20px rgba(2,132,199,0.30) !important;
   transition: box-shadow 0.2s, transform 0.2s !important;
 }
 .salon-btn-primary:hover {
-  box-shadow: 0 6px 30px rgba(196, 125, 149, 0.5) !important;
+  box-shadow: 0 6px 30px rgba(2,132,199,0.45) !important;
   transform: translateY(-1px);
 }
 
-/* ── Mobile: prevent horizontal overflow on all devices ── */
+/* ── Mobile: prevent horizontal overflow ─────────────────── */
 html, body { overflow-x: hidden; max-width: 100%; }
