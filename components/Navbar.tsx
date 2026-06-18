@@ -13,6 +13,18 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-bold text-xl">
+          <span
+            className="flex items-center justify-center w-7 h-7 rounded-lg flex-shrink-0"
+            style={{ background: 'linear-gradient(135deg, #1e3a5f, #2563eb)' }}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M5.2 4.3c.6-.6 1.5-.7 2.1-.1l1.8 1.7c.5.5.6 1.3.2 1.9l-.9 1.4c-.3.5-.2 1.1.2 1.5l3.5 3.5c.4.4 1 .5 1.5.2l1.4-.9c.6-.4 1.4-.3 1.9.2l1.7 1.8c.6.6.5 1.5-.1 2.1l-1.1 1c-.7.7-1.8.9-2.7.5-2.7-1.2-5.3-3.1-7.5-5.3-2.2-2.2-4.1-4.8-5.3-7.5-.4-.9-.2-2 .5-2.7l1-1.1Z"
+                stroke="white" strokeWidth="1.6" strokeLinejoin="round" fill="none"
+              />
+              <path d="M16 4l1.5 1.5L21 2" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+            </svg>
+          </span>
           <span className={`${theme.gradientText} font-extrabold tracking-tight`}>
             {config.name}
           </span>
