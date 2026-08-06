@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { AI_LIMITER } from '@/lib/rateLimit'
 
 export async function POST(req: NextRequest) {
+  const limited = AI_LIMITER.check(req); if (limited) return limited
+
   const { service } = await req.json()
   if (!service) return NextResponse.json({ error: 'Missing service' }, { status: 400 })
 

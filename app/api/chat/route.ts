@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { aiChat } from '@/lib/ai'
 import config from '@/vertical.config'
+import { AI_LIMITER } from '@/lib/rateLimit'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,6 +25,8 @@ function extractBooking(text: string): BookingDetails | null {
 }
 
 export async function POST(req: NextRequest) {
+  const limited = AI_LIMITER.check(req); if (limited) return limited
+
   try {
     const { messages } = await req.json()
     if (!messages || !Array.isArray(messages)) {
