@@ -25,6 +25,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ── Dark hero/section background (used by pages built for the dark
+   template variant: home, providers, how-it-works, chat, search) ──── */
+.salon-bg {
+  background: #080712;
+  color: #ffffff;
+}
+
 /* ── Light card base ─────────────────────────────────────── */
 .glass {
   background: rgba(255, 255, 255, 0.80);
