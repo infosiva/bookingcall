@@ -9,6 +9,7 @@ import FloatingChatWrapper from '@/components/FloatingChatWrapper'
 import { getSiteFlags } from '@/lib/flags'
 import FeedbackWidget from '@/components/FeedbackWidget'
 
+import { MotionProvider } from "@infosiva/shared-ui/modern";
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -74,7 +75,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Navbar />
 
         <main className="flex-1">
-          {children}
+          <MotionProvider>{children}</MotionProvider>
         </main>
 
         <footer className="border-t border-white/[0.06] py-8 px-6">

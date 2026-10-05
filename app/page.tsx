@@ -4,6 +4,7 @@ import config from '@/vertical.config'
 import { theme, btn } from '@/lib/theme'
 import HeroChatPreview from '@/components/HeroChatPreview'
 import BookingDemo from '@/components/BookingDemo'
+import { MagneticButton } from "@infosiva/shared-ui/modern";
 
 const HOW_IT_WORKS = [
   {
@@ -107,8 +108,10 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-8">
-              <Link href="/chat" className={`${btn.primary} text-base px-8 py-4 salon-btn-primary`}>
-                Book Something Now <ArrowRight size={18} />
+              <Link href="/chat" className="inline-flex">
+                <MagneticButton tabIndex={-1} className={`${btn.primary} text-base px-8 py-4 salon-btn-primary`}>
+                  Book Something Now <ArrowRight size={18} />
+                </MagneticButton>
               </Link>
               <Link href="/providers" className={`${btn.secondary} text-base px-8 py-4`}>
                 List Your Business
