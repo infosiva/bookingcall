@@ -1,0 +1,11 @@
+export default function Logo({ size = 28 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
+      <rect width="32" height="32" rx="8" fill="#facc15" />
+      <g transform="translate(4 5)">
+        <path d="M5.2 4.3c.6-.6 1.5-.7 2.1-.1l1.8 1.7c.5.5.6 1.3.2 1.9l-.9 1.4c-.3.5-.2 1.1.2 1.5l3.5 3.5c.4.4 1 .5 1.5.2l1.4-.9c.6-.4 1.4-.3 1.9.2l1.7 1.8c.6.6.5 1.5-.1 2.1l-1.1 1c-.7.7-1.8.9-2.7.5-2.7-1.2-5.3-3.1-7.5-5.3-2.2-2.2-4.1-4.8-5.3-7.5-.4-.9-.2-2 .5-2.7l1-1.1Z" fill="none" stroke="#0c1a2b" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M16 4l1.5 1.5L21 2" fill="none" stroke="#0c1a2b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    </svg>
+  )
+}

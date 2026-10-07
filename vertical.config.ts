@@ -67,7 +67,7 @@ const config: VerticalConfig = {
   name:       'BookingCall',
   tagline:    'Your phone answers itself. Customers book 24/7 — no app, no form, no missed call.',
   domain:     'bookingcall.app',
-  themeColor: 'rose',
+  themeColor: 'amber',
 
   providerLabel:  'Business',
   providerPlural: 'Businesses',

@@ -2,10 +2,10 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const ACCENT = '#0ea5e9'
-const ACCENT_RGB = '14,165,233'
-const ACCENT_DARK = '#0284c7'
-const BG = 'rgba(6,6,16,0.97)'
+const ACCENT = '#facc15'
+const ACCENT_RGB = '250,204,21'
+const ACCENT_DARK = '#eab308'
+const BG = 'rgba(12,26,43,0.98)'
 const BOTTOM_OFFSET = 84
 
 export default function FloatingChatWrapper() {
@@ -98,7 +98,7 @@ export default function FloatingChatWrapper() {
                 style={{ flex: 1, background: 'rgba(255,255,255,0.06)', border: `1px solid rgba(${ACCENT_RGB},0.25)`,
                   borderRadius: 10, padding: '8px 12px', fontSize: isMobile ? 16 : 13, color: '#eef', outline: 'none' }} />
               <button onClick={send} style={{ background: `linear-gradient(135deg,${ACCENT},${ACCENT_DARK})`, border: 'none',
-                borderRadius: 10, padding: '8px 14px', fontSize: 14, color: '#fff', cursor: 'pointer', fontWeight: 600 }}>→</button>
+                borderRadius: 10, padding: '8px 14px', fontSize: 14, color: '#0c1a2b', cursor: 'pointer', fontWeight: 600 }}>→</button>
             </div>
           </motion.div>
         )}
