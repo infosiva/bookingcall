@@ -4,6 +4,7 @@ import Script from 'next/script'
 import './globals.css'
 import config from '@/vertical.config'
 import { loadSiteTheme, buildThemeStyleTag, buildGa4Snippet, isValidGa4Id } from '@/lib/theme-loader'
+import { AnimatedBg } from '@/components/AnimatedBg'
 import Navbar from '@/components/Navbar'
 import FloatingChatWrapper from '@/components/FloatingChatWrapper'
 import { getSiteFlags } from '@/lib/flags'
@@ -64,6 +65,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className={`${inter.className} ${fraunces.variable} min-h-full flex flex-col text-white`}
         style={{ background: '#0c1a2b' }}
       >
+        <AnimatedBg theme={theme} fallback="none" />
         <Navbar />
 
         <main className="flex-1">
