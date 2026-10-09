@@ -291,7 +291,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 
 /* ===== BookingCall design pass: travel-magazine, navy + yellow ===== */
 :root{--bc-bg:#0c1a2b;--bc-ink:#f4f1e8;--bc-mute:#a9b6c6;--bc-acc:#facc15;--bc-card:#12263d;--bc-line:rgba(250,204,21,.22)}
-body{background:var(--bc-bg)!important}
+body{background:var(--bc-bg)!important;color:var(--bc-ink)}
 .bc-wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 .bc-page{position:relative;color:var(--bc-ink);overflow-x:clip}
 .bc-bg{position:absolute;inset:0 0 auto 0;height:900px;z-index:-1;pointer-events:none;background:radial-gradient(60% 50% at 85% 0%,rgba(250,204,21,.16),transparent 70%),radial-gradient(50% 50% at 0% 20%,rgba(56,189,248,.14),transparent 70%),linear-gradient(180deg,#0f2238,#0c1a2b);animation:bcdrift 18s ease-in-out infinite alternate}
@@ -354,3 +354,8 @@ body{background:var(--bc-bg)!important}
 .glass.text-white\/85,.glass.text-white\/70{color:var(--bc-ink)}
 .text-white\/25,.text-white\/30,.text-white\/40,.text-white\/50,.text-white\/55{color:var(--bc-mute)!important}
 .text-rose-300{color:#fda4af}
+
+/* dynamic theme badge classes are purged by Tailwind; pill + legal pages need explicit colours */
+main h1,main h2,main h3{color:var(--bc-ink)}
+main p,main li{color:var(--bc-mute)}
+.bc-badge{background:rgba(250,204,21,.14);color:var(--bc-acc);border:1px solid var(--bc-line)}

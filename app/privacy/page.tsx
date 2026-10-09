@@ -1,8 +1,8 @@
 export default function PrivacyPage() {
   return (
-    <main style={{ maxWidth: 720, margin: '0 auto', padding: '60px 24px', fontFamily: 'system-ui', lineHeight: 1.7, color: '#1a1a1a' }}>
+    <main style={{ maxWidth: 720, margin: '0 auto', padding: '60px 24px', fontFamily: 'system-ui', lineHeight: 1.7, color: 'inherit' }}>
       <h1 style={{ fontSize: 32, fontWeight: 800, marginBottom: 8 }}>Privacy Policy</h1>
-      <p style={{ color: '#666', marginBottom: 40 }}>Last updated: June 2026</p>
+      <p style={{ color: '#a9b6c6', marginBottom: 40 }}>Last updated: June 2026</p>
       <h2 style={{ fontSize: 20, fontWeight: 700, marginTop: 32 }}>What we collect</h2>
       <p>BookingCall collects only information you provide directly — email when you sign up, anonymous usage data. We do not sell your data.</p>
       <h2 style={{ fontSize: 20, fontWeight: 700, marginTop: 32 }}>Cookies</h2>

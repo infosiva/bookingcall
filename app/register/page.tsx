@@ -107,7 +107,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)] px-4 py-16 max-w-5xl mx-auto">
       <div className="text-center mb-10">
-        <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full ${theme.badge} text-xs font-medium mb-4`}>
+        <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full ${theme.badge} text-xs bc-badge font-medium mb-4`}>
           <Zap size={12} /> Free Trial — No Card Required
         </div>
         <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
