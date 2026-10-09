@@ -43,3 +43,9 @@ Not restyled: /chat page body (still near-black generic), feedback route unchang
 - Moves: AnimatedBg (ambient hero/background); CSS keyframes: bcblink, bcdrift, blink, ds-float, ds-shift, fadeUp, float, float-beauty; transitions on interactive elements.
 - Trigger: page load (ambient) and hover/press (interactive). Reduced motion: honoured via prefers-reduced-motion block.
 - STATUS: scope documented from existing code only. Skill-stack passes (ui-ux-pro-max, emil-design-eng, impeccable critique, review-animations) and 375/1280 screenshot review are NOT yet run for this app. Item 21 stays OPEN until they are.
+
+## Skill-stack pass 2026-10-08 (375 + 1280 screenshots read)
+- ANIMATED SCOPE: hero chat transcript types in line by line (shows the booking flow); CTA press scale; entry fade. Reduced-motion respected.
+- Fixed: none needed. Fold shows H1, CTA, demo card at 375 and 1280. Chat FAB and Feedback pill clear. Targets 44px+.
+- Not measured: automated contrast ratio, visual-qa.mjs, build. Not pushed.
+- SKILL-STACK: done

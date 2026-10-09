@@ -40,7 +40,6 @@ export default function HomePage() {
 
         <header className="bc-hero">
           <div>
-            <p className="bc-kicker">Travel desk in your pocket</p>
             <h1 className="bc-h1 bc-serif">Book the table, <em>not the phone queue</em></h1>
             <p className="bc-sub">Tell BookingCall what you want. It tries to ring the venue for you, and if it cannot, it hands you a message to send.</p>
             <Link href="/chat" className="bc-cta">Start a booking</Link>

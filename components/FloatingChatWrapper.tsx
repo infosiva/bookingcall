@@ -29,8 +29,21 @@ export default function FloatingChatWrapper() {
     setMsgs(m => [...m, { role: 'user', text: userMsg }])
     setInput('')
     try {
-      const res = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      const res = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'text/event-stream' },
         body: JSON.stringify({ messages: [{ role: 'user', content: userMsg }] }) })
+      if ((res.headers.get('content-type') || '').includes('text/event-stream') && res.body) {
+        setMsgs(m => [...m, { role: 'bot', text: '' }])
+        const reader = res.body.getReader(); const dec = new TextDecoder(); let buf = ''
+        for (;;) {
+          const { done, value } = await reader.read(); if (done) break
+          buf += dec.decode(value, { stream: true }); const lines = buf.split('\n'); buf = lines.pop() || ''
+          for (const l of lines) {
+            if (!l.startsWith('data:')) continue
+            try { const t = JSON.parse(l.slice(5).trim()).choices?.[0]?.delta?.content; if (t) setMsgs(m => m.map((x, i) => i === m.length - 1 ? { ...x, text: x.text + t } : x)) } catch {}
+          }
+        }
+        return
+      }
       const data = await res.json()
       setMsgs(m => [...m, { role: 'bot', text: data.text || 'Happy to help!' }])
     } catch {
