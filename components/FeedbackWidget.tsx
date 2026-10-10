@@ -22,7 +22,7 @@ export default function FeedbackWidget({ siteName = 'this site' }: { siteName?: 
   }
 
   if (!open) return (
-    <button onClick={() => setOpen(true)} style={{ position:'fixed', bottom:88, right:24, zIndex:9997, background:'rgba(0,0,0,0.06)', border:'1px solid rgba(0,0,0,0.12)', borderRadius:20, padding:'5px 12px', fontSize:12, fontWeight:600, color:'#64748b', cursor:'pointer', backdropFilter:'blur(8px)' }}>
+    <button onClick={() => setOpen(true)} style={{ position:'fixed', bottom:88, right:24, zIndex:9997, background:'rgba(0,0,0,0.06)', border:'1px solid rgba(0,0,0,0.12)', borderRadius:20, padding:'5px 12px', fontSize:12, fontWeight:600, color:'#a9b6c6', cursor:'pointer', backdropFilter:'blur(8px)' }}>
       Feedback
     </button>
   )
@@ -31,7 +31,7 @@ export default function FeedbackWidget({ siteName = 'this site' }: { siteName?: 
     <div style={{ position:'fixed', bottom:88, right:90, zIndex:9997, width:280, background:'#fff', borderRadius:12, boxShadow:'0 4px 24px rgba(0,0,0,0.14)', padding:16, display:'flex', flexDirection:'column', gap:10 }}>
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
         <span style={{ fontWeight:700, fontSize:14, color:'#0f172a' }}>Send feedback</span>
-        <button onClick={() => setOpen(false)} style={{ background:'none', border:'none', cursor:'pointer', color:'#64748b', fontSize:18, lineHeight:1 }}>x</button>
+        <button onClick={() => setOpen(false)} style={{ background:'none', border:'none', cursor:'pointer', color:'#a9b6c6', fontSize:18, lineHeight:1 }}>x</button>
       </div>
       {sent ? (
         <p style={{ fontSize:13, color:'#059669', margin:0 }}>Thanks! Feedback received</p>
